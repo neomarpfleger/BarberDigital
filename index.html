@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barbearia</title>
+    <title>Barber Digital</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville+SC&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="./css/style.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -20,17 +24,22 @@
     <div id="agendamento">
         <div id="cadastro">
             <div>
-                <label for="nomeUsuario">Nome</label>
+                <label for="nomeUsuario">Nome:</label>
                 <input type="text" name="nome" id="nomeUsuario" required>
             </div>
             <div>
-                <label for="telUsuario">Telefone</label>
+                <label for="telUsuario">Telefone:</label>
                 <input type="text" name="telUsuario" id="telUsuario" placeholder="(99) 99999-9999" required>
             </div>
             <div>
                 <button class="btnAgendamento">Fazer Agendamento</button>
             </div>
         </div>
+        <div id="Rodape">
+            <hr>
+            <p>Digital Makers</p>
+        </div>
+    </div>
     <!--<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>-->
     <script type="module" src="./js/agendamento.js"></script>
