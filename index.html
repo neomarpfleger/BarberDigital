@@ -18,18 +18,19 @@
 </head>
 <body>
     <div id="agendamento">
-        <div>
-            <label for="nomeUsuario">Nome</label>
-            <input type="text" name="nome" id="nomeUsuario" required>
+        <div id="cadastro">
+            <div>
+                <label for="nomeUsuario">Nome</label>
+                <input type="text" name="nome" id="nomeUsuario" required>
+            </div>
+            <div>
+                <label for="telUsuario">Telefone</label>
+                <input type="text" name="telUsuario" id="telUsuario" placeholder="(99) 99999-9999" required>
+            </div>
+            <div>
+                <button class="btnAgendamento">Fazer Agendamento</button>
+            </div>
         </div>
-        <div>
-            <label for="telUsuario">Telefone</label>
-            <input type="text" name="telUsuario" id="telUsuario" placeholder="(99) 99999-9999" required>
-        </div>
-        <div>
-            <button class="btnAgendamento">Fazer Agendamento</button>
-        </div>
-
     <!--<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>-->
     <script type="module" src="./js/agendamento.js"></script>
