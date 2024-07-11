@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia</title>
+    <link rel="stylesheet" href="../css/registra-hora.css">
+
+    <script type="module" src="../js/registra-hora.js"></script>
+</head>
+<body>
+    <main>
+        <p id="mensagemUsuario"></p>
+        <p id="mensagemUsuarioServico"></p>
+        <h1 id="servico">Serviços</h1>
+
+        <!--<div class="opcoesDeServico">
+            <label class="opcoesServico">
+                <input type="radio" name="servico" value="cabelo"> Cabelo
+            </label>
+            <label class="opcoesServico">
+                <input type="radio" name="servico" value="barba"> Barba
+            </label>
+            <label class="opcoesServico">
+                <input type="radio" name="servico" value="cabeloBarba"> Cabelo + Barba
+            </label>            
+        </div>-->
+
+        <div class="opcoesDeServico">
+            <div class="opcoesServico">
+                <h1>Cabelo</h1>
+                <h2>35 R$</h2>
+                <h3>Tempo do corte: 20 minutos</h3>
+                <button class="btnAgendamento" value="cabelo" data-time="20">Solicitar Serviço</button>
+            </div>
+            <div class="opcoesServico">
+                <h1>Barba</h1>
+                <h2>35 R$</h2>
+                <h3>Tempo do corte: 20 minutos</h3>
+                <button class="btnAgendamento" value="barba" data-time="20">Solicitar Serviço</button>
+            </div>
+            <div class="opcoesServico">
+                <h1>Cabelo + Barba</h1>
+                <h2>60 R$</h2>
+                <h3>Tempo do corte: 40 minutos</h3>
+                <button class="btnAgendamento" value="cabeloBarba" data-time="40">Solicitar Serviço</button>
+            </div>            
+        </div>
+
+        <!--<label for="servico">Serviço:</label>
+        <select name="servico" id="servico">
+            <option value="vazio"></option>
+            <option value="barba">Barba</option>
+            <option value="cabelo">Cabelo Maquina</option>
+            <option value="cabelo">Cabelo Tesoura</option>
+            <option value="cabelo">Cabelo + barba</option>
+        </select>-->
+    </main>
+</body>
+</html>
