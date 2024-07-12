@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const nomeUsuario = localStorage.getItem('nomeUsuario');
     const nomeServico = localStorage.getItem('selectedService');
-    const tempoServico = localStorage.getItem('selectedTime');
+    const tempoServico = parseInt(localStorage.getItem('selectedTime'), 10); // Certifique-se de que seja um número
     const diaSelecionado = localStorage.getItem('diaSelecionado');
     const mesAnoSelecionado = localStorage.getItem('mesAnoSelecionado');
 
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let hora = 9;
         let minuto = 0;
 
-        while (hora < 15) {
+        while (hora < 19) {
             if (hora === 12) {
                 hora = 13;
                 minuto = 0;
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return { mesNumero, ano };
     }
 
-    /*async function exibirHorarios() {
+    async function exibirHorarios() {
         const horarios = gerarHorarios();
         horariosContainer.innerHTML = '';
 
@@ -88,64 +88,43 @@ document.addEventListener("DOMContentLoaded", function() {
         const querySnapshot = await getDocs(q);
         const horariosOcupados = querySnapshot.docs.map(doc => doc.data().horario);
 
-        horarios.forEach(horario => {
+        horarios.forEach((horario, index) => {
             const div = document.createElement('div');
             div.className = 'horario';
+            div.innerText = horario;
+
             if (horariosOcupados.includes(horario)) {
                 div.classList.add('ocupado');
+
+                // Se este horário estiver ocupado, a div anterior deve ficar cinza
+                if (index > 0 && tempoServico > 21) {
+                    const divAnterior = horariosContainer.children[index - 1];
+                    if (divAnterior) {
+                        divAnterior.style.backgroundColor = 'gray';
+                    }
+                }
             } else {
                 div.addEventListener('click', async (event) => {
+                    const horarioSelecionado = event.target.innerText;
 
-                    const horario = event.target.innerText;
-                    localStorage.setItem('horario', horario);
+                    if (tempoServico > 21) {
+                        const proximoHorario = horarios[index + 1];
+                        const proximoDiv = horariosContainer.children[index + 1];
 
-                    window.location.href = "./confirmacaoEAgradecimento.html";
-                    exibirHorarios();
-                });
-            }
-            div.innerText = horario;
-            horariosContainer.appendChild(div);
-        });
-    }*/
-
-        async function exibirHorarios() {
-            const horarios = gerarHorarios();
-            horariosContainer.innerHTML = '';
-        
-            const { mesNumero, ano } = parseMesAno(mesAnoSelecionado);
-            const dataConsulta = `${diaSelecionado}/${mesNumero}/${ano}`;
-            const agendamentosRef = collection(db, "agendamentos");
-            const q = query(agendamentosRef, where("data", "==", dataConsulta));
-            const querySnapshot = await getDocs(q);
-            const horariosOcupados = querySnapshot.docs.map(doc => doc.data().horario);
-        
-            horarios.forEach((horario, index) => {
-                const div = document.createElement('div');
-                div.className = 'horario';
-                div.innerText = horario;
-        
-                if (horariosOcupados.includes(horario)) {
-                    div.classList.add('ocupado');
-        
-                    if (tempoServico > 21 && index < horarios.length - 1) {
-                        // Torna a próxima div como ocupada
-                        const divSucessor = horariosContainer.children[index - 1];
-                        if (divSucessor) {
-                            divSucessor.classList.add('ocupado');
+                        if (proximoDiv && proximoDiv.classList.contains('ocupado')) {
+                            alert("Tempo insuficiente");
+                            return;
                         }
                     }
-                } else {
-                    div.addEventListener('click', (event) => {
-                        const horario = event.target.innerText;
-                        localStorage.setItem('horario', horario);
-                        window.location.href = "./confirmacaoEAgradecimento.html";
-                    });
-                }
-        
-                horariosContainer.appendChild(div);
-            });
-        }
-              
+
+                    localStorage.setItem('horario', horarioSelecionado);
+                    window.location.href = "./confirmacaoEAgradecimento.html";
+                });
+            }
+            
+            horariosContainer.appendChild(div);
+        });
+    }
 
     mostrarInformacoesUsuario();
     exibirHorarios();

@@ -8,6 +8,7 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     gap: 10rem;
     background-image: url('../imagens/PlanoDeFundo.avif');
@@ -35,10 +36,10 @@ body {
     height: 35%;
     display: flex;
     flex-direction: column;
-    margin: 18% auto 0;
     align-items: center;
     justify-content: center;
     border: 1px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.521);
     background-color: rgba(255, 228, 196, 0.411);
     border-radius: 20px;
 }
@@ -76,6 +77,9 @@ body {
     margin-top: 1.5rem;
     background: rgb(156, 10, 137);
     border-radius: 15px;
+    font-family: "Baskervville SC", serif;
+    font-weight: 600;
+    font-style: normal;
 }
 
 #cadastro div button:hover {

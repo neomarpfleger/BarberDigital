@@ -43,9 +43,10 @@ document.addEventListener("DOMContentLoaded", function() {
 const btnConfirmacaoDeAgendamento = document.querySelector("#btnConfirmacaoDeAgendamento");
 
 btnConfirmacaoDeAgendamento.addEventListener('click', async () => {
+
     const nomeUsuario = localStorage.getItem('nomeUsuario') || 'Não fornecido';
     const nomeServico = localStorage.getItem('selectedService') || 'Não selecionado';
-    const tempoServico = localStorage.getItem('selectedTime') || 'Não selecionado';
+    const tempoServico = parseInt(localStorage.getItem('selectedTime'), 10); // Certifique-se de que seja um número
     const diaSelecionado = localStorage.getItem('diaSelecionado');
     const mesAnoSelecionado = localStorage.getItem('mesAnoSelecionado');
     const horario = localStorage.getItem('horario') || 'Não fornecido';
@@ -62,6 +63,18 @@ btnConfirmacaoDeAgendamento.addEventListener('click', async () => {
 
     // Adicionar o agendamento ao Firestore
     await addAgendamento(horario, data, nomeUsuario, nomeServico, tempoServico);
+
+    // Se tempoServico for maior que 21 minutos, adicionar um segundo agendamento
+    if (tempoServico > 21) {
+        const [hora, minuto] = horario.split(':').map(Number);
+        const novoMinuto = minuto + 20;
+        const novaHora = novoMinuto >= 60 ? hora + 1 : hora;
+        const minutoFormatado = (novoMinuto >= 60 ? novoMinuto - 60 : novoMinuto).toString().padStart(2, '0');
+        const novoHorario = `${novaHora.toString().padStart(2, '0')}:${minutoFormatado}`;
+
+        await addAgendamento(novoHorario, data, nomeUsuario, nomeServico, 20); // Adiciona mais 20 minutos de serviço
+    }
+
     alert('Agendamento realizado com sucesso');
     exibirHorarios();
 });
@@ -104,9 +117,6 @@ function parseMesAno(mesAnoSelecionado) {
 
     return { mesNumero, ano };
 }
-
-// Chamando a função com um exemplo de ID de agendamento (A função exibirAgendamento não está definida)
-// exibirAgendamento("exemploAgendamentoId");
 
 // Event listener para o botão de novo agendamento
 const novoAgendamento = document.querySelector('#novoAgendamento');
