@@ -25,14 +25,6 @@ btnAgendamento.addEventListener("click", async function() {
     // Verificar se os campos estão preenchidos
     if (nomeUsuario && telUsuario) {
         try {
-            // Adicionar os dados ao Firestore
-            /*const docRef = await addDoc(collection(db, "agendamentos"), {
-                nome: nomeUsuario,
-                telefone: telUsuario,
-                timestamp: new Date() // Adiciona um timestamp
-            });
-            console.log("Documento escrito com ID: ", docRef.id);*/
-
             // Armazenar o nome do usuário no localStorage
             localStorage.setItem('nomeUsuario', nomeUsuario);
 
