@@ -16,7 +16,6 @@ const db = getFirestore(app);*/
 
 const btnAgendamento = document.querySelector(".btnAgendamento");
 btnAgendamento.addEventListener("click", async function() {
-    console.log("Fui clicado");
 
     // Capturar os dados do formulário
     const nomeUsuario = document.getElementById("nomeUsuario").value;
