@@ -8,8 +8,7 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    align-items: center;  
     gap: 10rem;
     background-image: url('../imagens/PlanoDeFundo.avif');
     background-size: cover; /* Ajusta a imagem para cobrir todo o elemento */
@@ -27,59 +26,68 @@ body {
     height: 100%;
     background-color: rgba(255, 255, 255, 0.2); /* Cor de fundo com opacidade */
     z-index: 1;
-}
+}   
 
 #cadastro {
     position: relative;
     z-index: 2;
-    width: 30%;
-    height: auto;
+    width: 23%;
+    height: 55%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.521);
-    background-color: rgba(255, 228, 196, 0.411);
+    /*border: 2px solid rgba(255, 255, 255, 0.5);*/
+    backdrop-filter: blur(55px);
+    background-color: transparent;
     border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #cadastro div {
+    display: flex;
+    flex-direction: column;
     padding: 1rem;
+    letter-spacing: 0.8px;
 }
 
 #cadastro div input {
-    width: 10rem;
+    width: 15rem;
     height: 1.5rem;
-    color: black;
+    color: white;
     font-size: 1.2rem;
-    font-family: "Baskervville SC", serif;
-    font-weight: 600;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 400;
     font-style: normal;
-    background-color: rgba(156, 10, 137, 0.068);
-    border: 0.5px solid white;
-    border-radius: 10px;
+    backdrop-filter: blur(55px);
+    background-color: transparent;
+    border: none;
     text-align: center;
+    outline: none;
 }
 
 #cadastro div label {
     font-size: 1.2rem;
-    font-family: "Baskervville SC", serif;
-    font-weight: 600;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 500;
     font-style: normal;
+    color: white;
+    letter-spacing: 0.8px;
 }
 
 .btnAgendamento {
     font-size: 1rem;
-    color: white;
     width: 12rem;
     height: 2.5rem;
     margin-top: 1rem;
-    background: rgba(156, 10, 137, 0.489);
-    border-radius: 15px;
-    font-family: "Baskervville SC", serif;
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    font-family: "Alegreya Sans", sans-serif;
     font-weight: 600;
     font-style: normal;
+    letter-spacing: 0.8px;
+    box-shadow: 0 0 7px white;
 }
 
 #divCancelaAgendamento {
@@ -90,27 +98,32 @@ body {
 
 #btnCancelaAgendamento {
     font-size: 0.7rem;
-    color: white;
+    color: black;
     width: 10rem;
     height: 1.7rem;
     margin: 0.5rem 0 0 50%;
-    background: rgba(156, 10, 137, 0.489);
-    border-radius: 15px;
-    font-family: "Baskervville SC", serif;
-    font-weight: 600;
+    backdrop-filter: blur;
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 500;
     font-style: normal;
     z-index: 1;
+    letter-spacing: 0.8px;
+    box-shadow: 0 0 7px white;
 }
 
 #cadastro div button:hover {
     cursor: pointer;
-    background: rgb(156, 10, 137);
+    background: white;
     scale: 1.1;
 }
 
 hr {
     color: white;
-    width: 80%;
+    width: 100%;
+    margin: 0;
 }
 
 #rodape {
