@@ -30,12 +30,6 @@ btnAgendamentos.forEach(function(button) {
         
         // Redirecionar para outra página
         window.location.href = "./selecionarHorario.html";
-
-        const nomeUsuario = localStorage.getItem('nomeUsuario');
-        const nomeServico = localStorage.getItem('selectedService');
-        const tempoServico = localStorage.getItem('selectedTime');
-        
-        console.log("Este é o nome do usuário:", nomeUsuario, "e o serviço solicitado:", nomeServico, "com tempo de:", tempoServico, "minutos.");
     });
 
 });

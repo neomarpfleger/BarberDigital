@@ -28,7 +28,7 @@ btnAgendamento.addEventListener("click", async function() {
             localStorage.setItem('nomeUsuario', nomeUsuario);
 
             // Redirecionar para outra página
-            window.location.href = "./html/diaHora.html";
+            window.location.href = "./html/servicos.html";
         } catch (e) {
             console.error("Erro ao adicionar documento: ", e);
         }
