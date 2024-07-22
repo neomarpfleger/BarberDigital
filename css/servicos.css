@@ -17,7 +17,6 @@
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 400;
     font-style: normal;
-    
 }
 
 #agendamento::before {
@@ -52,6 +51,7 @@
     margin: 3rem 2rem 3rem;
     padding: 0.5rem 3rem;
     border-radius: 25px;
+    color: white;
 }
 
 #mensagemUsuario {

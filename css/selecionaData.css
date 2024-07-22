@@ -1,0 +1,85 @@
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../imagens/PlanoDeFundo.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    color: black;
+}   
+
+#cabecalhoMes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#proximoMes,
+#mesAnterior {
+    border: none;
+    font-size: 1.5rem;
+    background-color: #AF8260;
+    color: #E4C59E;
+    padding: 7px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.calendario {
+    backdrop-filter: blur(55px);
+    background-color: transparent;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 400px;
+}
+
+.calendario h2 {
+    text-align: center;
+    margin: 0;
+}
+
+.dias-semana {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.dias-semana div,
+.dias div {
+    width: calc(100% / 8);
+    text-align: center;
+    padding: 7px 0;
+}
+
+.dias {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dias div {
+    height: 40px;
+    line-height: 40px;
+}
+
+.dias div:hover {
+    cursor: pointer;
+    background-color: #AF8260;
+}
+
+.dias div:not(:empty) {
+    border: 1px solid #E4C59E;
+    margin: 2px 2.5px;
+    border-radius: 5px;
+}
+
+.diaEmBranco {
+    margin: 3.5px;
+}

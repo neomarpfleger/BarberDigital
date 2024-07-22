@@ -26,6 +26,7 @@ btnAgendamento.addEventListener("click", async function() {
         try {
             // Armazenar o nome do usuário no localStorage
             localStorage.setItem('nomeUsuario', nomeUsuario);
+            localStorage.setItem('telUsuario', telUsuario);
 
             // Redirecionar para outra página
             window.location.href = "./html/servicos.html";

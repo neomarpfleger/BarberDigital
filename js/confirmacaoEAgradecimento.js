@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const usuarioCard = document.getElementById('usuarioCard');
 
     const nomeUsuario = localStorage.getItem('nomeUsuario');
+    const telUsuario = localStorage.getItem('telUsuario');
     const nomeServico = localStorage.getItem('selectedService');
     const tempoServico = localStorage.getItem('selectedTime');
     const diaSelecionado = localStorage.getItem('diaSelecionado');
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
         usuarioCard.innerHTML = `
             <h3>Informações do Usuário</h3>
             <p><strong>Nome:</strong> ${nomeUsuario || 'Não fornecido'}</p>
+            <p><strong>Telefone:</strong> ${telUsuario || 'Não fornecido'}</p>
             <p><strong>Serviço:</strong> ${nomeServico || 'Não selecionado'}</p>
             <p><strong>Tempo:</strong> ${tempoServico ? tempoServico + ' minutos' : 'Não selecionado'}</p>
             <p><strong>Data:</strong> ${diaSelecionado ? diaSelecionado + ' de ' + mesAnoSelecionado : 'Não selecionada'}</p>
@@ -45,6 +47,7 @@ const btnConfirmacaoDeAgendamento = document.querySelector("#btnConfirmacaoDeAge
 btnConfirmacaoDeAgendamento.addEventListener('click', async () => {
 
     const nomeUsuario = localStorage.getItem('nomeUsuario') || 'Não fornecido';
+    const telUsuario = localStorage.getItem('telUsuario') || 'Não fornecido';
     const nomeServico = localStorage.getItem('selectedService') || 'Não selecionado';
     const tempoServico = parseInt(localStorage.getItem('selectedTime'), 10); // Certifique-se de que seja um número
     const diaSelecionado = localStorage.getItem('diaSelecionado');
@@ -62,7 +65,7 @@ btnConfirmacaoDeAgendamento.addEventListener('click', async () => {
     const data = `${diaSelecionado}/${mesNumero}/${ano}`;
 
     // Adicionar o agendamento ao Firestore
-    await addAgendamento(horario, data, nomeUsuario, nomeServico, tempoServico);
+    await addAgendamento(horario, telUsuario, data, nomeUsuario, nomeServico, tempoServico);
 
     // Se tempoServico for maior que 21 minutos, adicionar um segundo agendamento
     if (tempoServico > 21) {
@@ -80,14 +83,16 @@ btnConfirmacaoDeAgendamento.addEventListener('click', async () => {
 });
 
 // Função para adicionar agendamento ao Firestore
-async function addAgendamento(horario, data, nomeUsuario, nomeServico, tempoServico) {
+async function addAgendamento(horario, telUsuario, data, nomeUsuario, nomeServico, tempoServico) {
     try {
         const docRef = await addDoc(collection(db, "agendamentos"), {
             nomeUsuario: nomeUsuario,
+            telUsuario: telUsuario,
             nomeServico: nomeServico,
             tempoServico: tempoServico,
             data: data,
             horario: horario,
+            statusAgendamento:'Agendado',
             timestamp: new Date() // Adiciona um timestamp
         });
         console.log("Documento adicionado com ID: ", docRef.id);

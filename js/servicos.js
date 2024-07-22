@@ -5,11 +5,10 @@ document.addEventListener('DOMContentLoaded', ( ) => {
     // Exibir o nome do usuário na página
     if (nomeUsuario) {
         document.getElementById('mensagemUsuario').textContent = `Olá ${nomeUsuario}, que bom vê-lo aqui!`;
-        document.getElementById('mensagemUsuarioServico').textContent = `Qual serviço você está precisando?`;
+        document.getElementById('mensagemUsuarioServico').textContent = `Selecione o serviço desejado!`;
     } else {
         document.getElementById('mensagemUsuario').textContent = 'Olá, que bom vê-lo aqui!';
     }
-
     // Limpar o localStorage se necessário
     // localStorage.removeItem('nomeUsuario');
 });
@@ -29,7 +28,7 @@ btnAgendamentos.forEach(function(button) {
         localStorage.setItem('selectedTime', selectedTime);
         
         // Redirecionar para outra página
-        window.location.href = "./selecionarHorario.html";
+        window.location.href = "./selecionaData.html";
     });
 
 });

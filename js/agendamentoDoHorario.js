@@ -23,11 +23,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const tempoServico = parseInt(localStorage.getItem('selectedTime'), 10); // Certifique-se de que seja um número
     const diaSelecionado = localStorage.getItem('diaSelecionado');
     const mesAnoSelecionado = localStorage.getItem('mesAnoSelecionado');
+    const telUsuario = localStorage.getItem('telUsuario');
 
     function mostrarInformacoesUsuario() {
         usuarioCard.innerHTML = `
             <h3>Informações do Usuário</h3>
             <p><strong>Nome:</strong> ${nomeUsuario || 'Não fornecido'}</p>
+            <p><strong>Telefone:</strong> ${telUsuario || 'Não fornecido'}</p>
             <p><strong>Serviço:</strong> ${nomeServico || 'Não selecionado'}</p>
             <p><strong>Tempo:</strong> ${tempoServico ? tempoServico + ' minutos' : 'Não selecionado'}</p>
             <p><strong>Data:</strong> ${diaSelecionado ? diaSelecionado + ' de ' + mesAnoSelecionado : 'Não selecionada'}</p>
