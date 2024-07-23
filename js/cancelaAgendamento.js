@@ -27,10 +27,25 @@ async function verificarAgendamentos(telUsuario) {
 
     try {
         const querySnapshot = await getDocs(q);
+        const agendamentosDiv = document.querySelector('#agendamentos');
+        agendamentosDiv.innerHTML = ''; // Limpar resultados anteriores
+
         if (!querySnapshot.empty) {
             console.log("O usuário tem os seguintes agendamentos:");
             querySnapshot.forEach((doc) => {
-                console.log(doc.data());
+                const agendamento = doc.data();
+                console.log(agendamento);
+                // Criar card com as informações do agendamento
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <h3>${agendamento.nomeUsuario}</h3>
+                    <p>Telefone: ${agendamento.telUsuario}</p>
+                    <p>Data: ${agendamento.data}</p>
+                    <p>Hora: ${agendamento.hora}</p>
+                    <p>Status: ${agendamento.statusAgendamento}</p>
+                `;
+                agendamentosDiv.appendChild(card);
             });
             return true;
         } else {
@@ -64,3 +79,10 @@ if (btnMeuAgendamento) {
         window.location.href = './html/cancelaAgendamento.html';
     });
 }
+
+// Event listener para o botão de voltar a pagina primaria.
+const btnVoltar = document.getElementById("btnVoltar");
+btnVoltar.addEventListener("click", function() {
+    window.location.href = '../index.html';
+    console.log("fui clicado")
+});
