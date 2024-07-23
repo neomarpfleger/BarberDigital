@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -27,7 +27,7 @@ async function verificarAgendamentos(telUsuario) {
 
     try {
         const querySnapshot = await getDocs(q);
-        const agendamentosDiv = document.querySelector('#agendamentos');
+        const agendamentosDiv = document.querySelector('#agendamentosAtivos');
         agendamentosDiv.innerHTML = ''; // Limpar resultados anteriores
 
         if (!querySnapshot.empty) {
@@ -42,11 +42,21 @@ async function verificarAgendamentos(telUsuario) {
                     <h3>${agendamento.nomeUsuario}</h3>
                     <p>Telefone: ${agendamento.telUsuario}</p>
                     <p>Data: ${agendamento.data}</p>
-                    <p>Hora: ${agendamento.hora}</p>
+                    <p>Hora: ${agendamento.horario}</p>
                     <p>Status: ${agendamento.statusAgendamento}</p>
+                    <button class="btnCancelaAgendamento" data-id="${doc.id}" type="button">Cancelar Agendamento</button>
                 `;
                 agendamentosDiv.appendChild(card);
             });
+
+            // Adiciona event listener a todos os botões de cancelar agendamento
+            document.querySelectorAll('.btnCancelaAgendamento').forEach(button => {
+                button.addEventListener('click', async function() {
+                    const agendamentoId = this.getAttribute('data-id');
+                    await cancelarAgendamento(agendamentoId);
+                });
+            });
+
             return true;
         } else {
             console.log("O usuário não tem agendamentos ou todos os agendamentos foram cancelados.");
@@ -55,6 +65,22 @@ async function verificarAgendamentos(telUsuario) {
     } catch (error) {
         console.error("Erro ao verificar agendamentos:", error);
         return false;
+    }
+}
+
+// Função para cancelar agendamento
+async function cancelarAgendamento(agendamentoId) {
+    try {
+        const agendamentoDoc = doc(db, "agendamentos", agendamentoId);
+        await updateDoc(agendamentoDoc, {
+            statusAgendamento: "Cancelado"
+        });
+        alert("Agendamento cancelado com sucesso!")
+        console.log(`Agendamento ${agendamentoId} cancelado com sucesso.`);
+        // Opcional: Remover ou atualizar o card do DOM após cancelar
+        document.querySelector(`button[data-id="${agendamentoId}"]`).parentElement.remove();
+    } catch (error) {
+        console.error("Erro ao cancelar agendamento:", error);
     }
 }
 
