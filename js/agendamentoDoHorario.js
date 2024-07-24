@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-import { getFirestore, collection, query, where, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCjikfZGyH08hxyNq9lFbeW_nnZKToMDfs",
@@ -88,7 +88,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const agendamentosRef = collection(db, "agendamentos");
         const q = query(agendamentosRef, where("data", "==", dataConsulta));
         const querySnapshot = await getDocs(q);
-        const horariosOcupados = querySnapshot.docs.map(doc => doc.data().horario);
+        const horariosOcupados = querySnapshot.docs
+            .filter(doc => doc.data().statusAgendamento === "Agendado")
+            .map(doc => doc.data().horario);
 
         horarios.forEach((horario, index) => {
             const div = document.createElement('div');
@@ -110,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     const horarioSelecionado = event.target.innerText;
 
                     if (tempoServico > 21) {
-                        const proximoHorario = horarios[index + 1];
                         const proximoDiv = horariosContainer.children[index + 1];
 
                         if (proximoDiv && proximoDiv.classList.contains('ocupado')) {
@@ -118,16 +119,13 @@ document.addEventListener("DOMContentLoaded", function() {
                             return;
                         }
                     }
-
                     localStorage.setItem('horario', horarioSelecionado);
                     window.location.href = "./confirmacaoEAgradecimento.html";
                 });
             }
-            
             horariosContainer.appendChild(div);
         });
     }
-
     mostrarInformacoesUsuario();
     exibirHorarios();
 });
