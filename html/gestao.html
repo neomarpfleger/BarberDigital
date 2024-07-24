@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarberDigital/Gestão</title>
+
+    <link rel="stylesheet" href="../css/gesta.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="container">
+        <div id="InputPassword">
+            <div id="cadastro">
+                <div class="inputs">
+                    <label for="nomeUsuario">Usuario</label>
+                    <input type="text" name="nome" id="nomeUsuario" required>
+                    <hr>
+                </div>
+                <div class="inputs">
+                    <label for="password">Senha</label>
+                    <input type="password" name="password" id="password" placeholder="* * * * * *" required>
+                    <hr>
+                </div>
+                <div id="divCancelaAgendamento">
+                    <button id="btnLogin">Fazer Login</button>
+                </div>
+                <div id="btnVoltar">
+                    <i class="fa-solid fa-circle-left"></i>
+                </div>
+            </div>
+        </div>
+        <div id="agendamentosAtivos"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+    <script type="module" src="../js/gestao.js"></script>
+</body>
+</html>

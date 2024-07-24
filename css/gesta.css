@@ -1,53 +1,64 @@
-body {
-    margin: 0;
+* {
     padding: 0;
+    margin: 0;
 }
 
-#agendamento {
+#container {
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     width: 100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;  
-    gap: 10rem;
+    align-items: center;
     background-image: url('../imagens/PlanoDeFundo.avif');
-    background-size: cover;
+    background-size: cover; /* Ajusta a imagem para cobrir todo o elemento */
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
 }
 
-#agendamento::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /*background-color: rgba(255, 255, 255, 0.2); /* Cor de fundo com opacidade */
-    z-index: 1;
-}   
-
-#cadastro {
+#InputPassword {
     position: relative;
     z-index: 2;
     width: 25%;
-    height: 55%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /*border: 2px solid rgba(255, 255, 255, 0.5);*/
+    margin: 1rem;
+    padding: 2rem 0 0 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.521);
     backdrop-filter: blur(55px);
     background-color: transparent;
     border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cardCliente button {
+    font-size: 0.7rem;
+    color: black;
+    width: 9rem;
+    height: 1.2rem;
+    margin: 1rem auto;
+    backdrop-filter: blur;
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    z-index: 1;
+    letter-spacing: 0.8px;
+    box-shadow: 0 0 7px white;
 }
 
 #cadastro div {
     display: flex;
     flex-direction: column;
-    padding: 0.7rem;
+    padding: 1rem;
     letter-spacing: 0.8px;
 }
 
@@ -71,56 +82,42 @@ body {
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 500;
     font-style: normal;
-    color: white;
+    color: black;
     letter-spacing: 0.8px;
 }
 
-.btnAgendamento {
+#btnLogin {
     font-size: 1rem;
     width: 100%;
     height: 2.5rem;
     margin-top: 1rem;
-    background-color: white;
+    background-color: #AF8260;
     border: 1px solid transparent;
     border-radius: 25px;
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 600;
     font-style: normal;
     letter-spacing: 0.8px;
-    box-shadow: 0 0 7px white;
+    box-shadow: 0 0 7px #E4C59E;
 }
 
-#divCancelaAgendamento, #divGestaoSistema {
-    width: 70%;
-    height: auto;
-    display: flex;
-}
-
-#btnMeuAgendamento, #btnMeuAcesso {
-    font-size: 0.7rem;
-    color: black;
-    width: 100%;
-    height: 1.2rem;
-    backdrop-filter: blur;
-    background-color: white;
-    border: 1px solid transparent;
-    border-radius: 25px;
-    font-family: "Alegreya Sans", sans-serif;
-    font-weight: 900;
-    font-style: normal;
-    z-index: 1;
-    letter-spacing: 0.8px;
-    box-shadow: 0 0 7px white;
-}
-
-#cadastro div button:hover {
+#btnLogin:hover {
     cursor: pointer;
-    background: white;
+    scale: 1.1;
+}
+
+#btnVoltar {
+    color: #AF8260;
+    font-size: 2rem;
+    display: flex;
+    align-items: end;
+}
+
+#btnVoltar i:hover {
+    cursor: pointer;
     scale: 1.1;
 }
 
 hr {
-    color: white;
-    width: 100%;
-    margin: 0;
+    color: #E4C59E;
 }
