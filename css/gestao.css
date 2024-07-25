@@ -23,14 +23,14 @@
 #InputPassword {
     position: relative;
     z-index: 2;
-    width: 25%;
+    width: auto;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 1rem;
-    padding: 2rem 0 0 0;
+    padding: 1rem 0 0 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.521);
     backdrop-filter: blur(55px);
     background-color: transparent;
@@ -65,7 +65,7 @@
 #cadastro div input {
     width: auto;
     height: 1.5rem;
-    color: white;
+    color: #E4C59E;
     font-size: 1.2rem;
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 400;
@@ -103,6 +103,7 @@
 
 #btnLogin:hover {
     cursor: pointer;
+    background: #E4C59E;
     scale: 1.1;
 }
 
@@ -115,9 +116,14 @@
 
 #btnVoltar i:hover {
     cursor: pointer;
+    color: #E4C59E;
     scale: 1.1;
 }
 
 hr {
     color: #E4C59E;
+}
+
+#containerAgenda{
+    display: none;
 }
