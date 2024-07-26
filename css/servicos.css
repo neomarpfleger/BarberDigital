@@ -47,7 +47,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 228, 196, 0.411);
+    backdrop-filter: blur(55px);
+    background-color: transparent;
     margin: 3rem 2rem 3rem;
     padding: 0.5rem 3rem;
     border-radius: 25px;
@@ -81,11 +82,13 @@
     justify-content: center;
     position: relative;
     z-index: 2;
-    width: 15rem;
+    width: auto;
     height: auto;
+    padding: 0 1rem;
     margin: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.521);
-    background-color: rgba(255, 228, 196, 0.411);
+    backdrop-filter: blur(20px);
+    background-color: transparent;
     border-radius: 15px;
     flex-wrap: wrap;
     gap: 0.5rem;
@@ -105,31 +108,24 @@
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 500;
     font-style: normal;
-    background: white;
+    background-color: #AF8260;
     z-index: 1;
     letter-spacing: 0.8px;
-    box-shadow: 0 0 7px white;
+    box-shadow: 0 0 7px #E4C59E;
     margin-bottom: 1.5rem;
 }
 
 .btnAgendamento:hover {
     cursor: pointer;
-    background: white;
+    background: #E4C59E;
     scale: 1.1;
 }
 
 @media only screen and (max-width: 480px) {
 
     #mensagens {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba(255, 228, 196, 0.411);
         margin: 1rem 1.5rem 1rem;
         padding: 1rem 1rem;
-        border-radius: 25px;
-        color: white;
     }
     
     #mensagemUsuario {
@@ -139,6 +135,14 @@
     
     #mensagemUsuarioServico{
         font-size: 1rem;
+    }
+
+    .opcoesServico h1 {
+        font-size: 1.5rem;
+    }
+
+    .opcoesServico h2 h3 {
+        font-size: 1.2rem;
     }
 
 }

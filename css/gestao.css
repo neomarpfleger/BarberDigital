@@ -30,9 +30,9 @@
     align-items: center;
     justify-content: center;
     margin: 1rem;
-    padding: 1rem 0 0 0;
+    padding: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.521);
-    backdrop-filter: blur(55px);
+    backdrop-filter: blur(20px);
     background-color: transparent;
     border-radius: 20px;
 }
@@ -43,9 +43,7 @@
     width: 9rem;
     height: 1.2rem;
     margin: 1rem auto;
-    backdrop-filter: blur;
     background-color: white;
-    border: 1px solid transparent;
     border-radius: 25px;
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 500;
