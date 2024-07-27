@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 7rem;
+}
+
+#msnSaudacao {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#somaAgendamento {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tituloDiaMes {
+    display: flex;
+    width: 100%;
+    height: 7rem;
+}
+
+.tituloAgendamento {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.tituloAgendamento:hover {
+    cursor: pointer;
+}
+
+#agendamentoDiaMes {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 14rem);
+}
+
+#agementoDia {
+    display: Flex;
+    width: 100%;
+    height: auto;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: #E4C59E;
+}
+
+#agementoMes {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    background-color: #E4C59E;
+}
+
+.card {
+    width: 10rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    margin: 0.2rem 0;
+}
+
+/*Calendario Mes*/
+
+#cabecalhoMes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#proximoMes,
+#mesAnterior {
+    border: none;
+    font-size: 1.5rem;
+    background-color: #AF8260;
+    color: #E4C59E;
+    padding: 7px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.calendario {
+    backdrop-filter: blur(55px);
+    background-color: transparent;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 400px;
+}
+
+.calendario h2 {
+    text-align: center;
+    margin: 0;
+}
+
+.dias-semana {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.dias-semana div,
+.dias div {
+    width: calc(100% / 7);
+    text-align: center;
+    padding: 0px 0;
+}
+
+.dias {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dias div {
+    height: 40px;
+    line-height: 40px;
+}
+
+.dias div:hover {
+    cursor: pointer;
+    background-color: #AF8260;
+}
+
+.dias div:not(:empty) {
+    margin: 2px 3.3px 2px 3;
+    border-radius: 5px;
+}
+
+.diaEmBranco {
+    margin: 2px 3.3px 2px 3;
+    border-radius: 5px;
+}
+
+/* Novo estilo para a soma dos agendamentos */
+.somaAgendamentos {
+    border: none;
+    font-size: 0.8rem;
+    display: inline-block;
+    width: 25px;
+    line-height: 40px;
+    text-align: center;
+    color: red;
+}
+
+#agendamentoMes.cardsAtivos .calendario {
+    display: none;
+}
+
+#agendamentoMes.cardsAtivos .card {
+    display: block;
+}
