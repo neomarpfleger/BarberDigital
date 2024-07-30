@@ -8,7 +8,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyCjikfZGyH08hxyNq9lFbeW_nnZKToMDfs",
     authDomain: "barbearia-632bf.firebaseapp.com",
     projectId: "barbearia-632bf",
-    storageBucket: "barbearia-632bf.appspot.com",
+    storageBucket: "barbearia-632bf",
     messagingSenderId: "900539097858",
     appId: "1:900539097858:web:2b92d32cdb3c209fa5581b",
     measurementId: "G-GK6S7FYXYS"
@@ -25,7 +25,6 @@ function getFormattedDate(date = new Date()) {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
 }
-
 
 // Função para carregar agendamentos de um dia específico
 async function carregaAgendamentosPorDia(data) {
@@ -67,40 +66,6 @@ async function carregaAgendamentosPorDia(data) {
     }
 }
 
-// Função para alternar entre visualização de agendamentos diários e mensais
-document.addEventListener("DOMContentLoaded", function() {
-    const agendamentoDia = document.getElementById('agementoDia');
-    const agendamentoMes = document.getElementById('agementoMes');
-    const tituloDia = document.getElementById('tituloDia');
-    const tituloMes = document.getElementById('tituloMes');
-
-    function toggleVisibility(showDia) {
-    if (showDia) {
-        agendamentoDia.style.display = 'flex';
-        agendamentoMes.style.display = 'none';
-        tituloDia.style.backgroundColor = '#E4C59E';
-        tituloMes.style.backgroundColor = '#AF8260';
-    } else {
-        agendamentoDia.style.display = 'none';
-        agendamentoMes.style.display = 'flex';
-        agendamentoMes.classList.add('cardsAtivos'); // Adiciona classe para mostrar os cards
-        tituloDia.style.backgroundColor = '#AF8260';
-        tituloMes.style.backgroundColor = '#E4C59E';
-    }
-}
-
-    tituloDia.addEventListener('click', function() {
-        toggleVisibility(true);
-    });
-
-    tituloMes.addEventListener('click', function() {
-        toggleVisibility(false);
-    });
-
-    // Inicialmente mostrar o agendamento do dia
-    toggleVisibility(true);
-});
-
 // Função para carregar agendamentos do mês
 async function carregaAgendamentosMes(ano, mes) {
     const agendamentosRef = collection(db, "agendamentos");
@@ -123,6 +88,33 @@ async function carregaAgendamentosMes(ano, mes) {
     });
 
     return agendamentosDoMes;
+}
+
+// Função para somar todos os agendamentos que estão com status de "agendado"
+async function somaAgendamentosAgendados() {
+    const agendamentosRef = collection(db, "agendamentos");
+    const q = query(agendamentosRef, where("statusAgendamento", "==", "Agendado")); // Filtrar agendamentos pelo status "agendado"
+
+    try {
+        const querySnapshot = await getDocs(q);
+        let totalAgendados = 0;
+        
+        querySnapshot.forEach((doc) => {
+            totalAgendados++;
+        });
+        console.log(totalAgendados)
+        return totalAgendados;
+    } catch (error) {
+        console.error("Erro ao somar agendamentos:", error);
+        return 0;
+    }
+}
+
+// Função para atualizar a soma dos agendamentos com status "agendado"
+async function atualizarSomaAgendamentos() {
+    const totalAgendamentos = await somaAgendamentosAgendados();
+    const somaAgendamentoElement = document.getElementById('totalAgendamentos');
+    somaAgendamentoElement.textContent = `Você esta com ${totalAgendamentos} agendamentos ativos!`;
 }
 
 // Função para gerar o calendário do mês
@@ -193,4 +185,15 @@ document.getElementById('mesAnterior').addEventListener('click', () => {
 });
 
 // Gerar o calendário ao carregar a página
-window.onload = gerarCalendario;
+window.onload = async () => {
+    await gerarCalendario();
+    await atualizarSomaAgendamentos();
+};
+
+//Função btnVoltar para o Calendário.
+const btnVoltar = document.querySelector(".btnVoltar");
+btnVoltar.addEventListener("click", function() {
+    const agendamentoMesDiv = document.getElementById('agementoMes');
+    agendamentoMesDiv.innerHTML = ''; // Limpar resultados anteriores
+    location.reload();
+});

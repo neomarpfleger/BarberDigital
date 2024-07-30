@@ -26,7 +26,8 @@ function gerarCalendario() {
 
     // Preencher os dias do mês
     for (let i = 1; i <= ultimoDia; i++) {
-        htmlDias += `<div data-value="${i}">${i}</div>`;
+        const diaFormatado = i.toString().padStart(2, '0');
+        htmlDias += `<div data-value="${diaFormatado}">${diaFormatado}</div>`;
     }
 
     diasContainer.innerHTML = htmlDias;

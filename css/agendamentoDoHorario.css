@@ -1,8 +1,11 @@
 body {
-    font-family: "Baskervville SC", serif;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 400;
+    font-style:normal;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #322c2b;
     margin: 0;
+    color: black;
 }
 
 .container {
@@ -10,12 +13,12 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 2rem auto;
-    width: 100%;
+    width: 80%;
     max-width: 500px;
 }
 
 .usuario-card {
-    background-color: #fff;
+    background-color: #E4C59E;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -28,16 +31,14 @@ body {
 .usuario-card h3 {
     margin: 0;
     font-size: 1.2em;
-    color: #333;
 }
 
 .usuario-card p {
     margin: 5px 0;
-    color: #555;
 }
 
 .horarios-container {
-    background-color: #fff;
+    background-color: #E4C59E;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -53,13 +54,13 @@ body {
 .horario {
     padding: 10px;
     border: 1px solid #ddd;
-    margin: 5px 0;
+    margin: 7px 0;
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
-    background-color: #007bff;
-    color: #fff;
-    transition: background-color 0.3s;
+    background-color: #af8260;
+    color: white;
+    transition: background-color 0.9s;
 }
 
 .horario.ocupado {
@@ -67,5 +68,5 @@ body {
 }
 
 .horario:hover {
-    background-color: #0056b3;
+    background-color: #803b3d;
 }

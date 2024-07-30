@@ -25,17 +25,10 @@
     justify-content: center;
 }
 
-#tituloDiaMes {
+#tituloMesVoltar {
     display: flex;
     width: 100%;
-    height: 7rem;
-}
-
-.tituloAgendamento {
-    display: flex;
-    width: 50%;
-    align-items: center;
-    justify-content: center;
+    height: 5rem;
 }
 
 .tituloAgendamento:hover {
@@ -48,23 +41,29 @@
     height: calc(100vh - 14rem);
 }
 
-#agementoDia {
-    display: Flex;
-    width: 100%;
-    height: auto;
-    overflow-y: auto;
-    padding: 1rem;
-    background-color: #E4C59E;
-}
-
 #agementoMes {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: auto;
     padding: 1rem;
     background-color: #E4C59E;
+}
+
+#tituloMes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;  
+}
+
+#btnVoltar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    font-size: 2rem;
 }
 
 .card {

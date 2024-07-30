@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BarberDigital/Gestão</title>
     <link rel="stylesheet" href="../css/telaGestao.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div id="container">
@@ -13,21 +14,18 @@
                 <h1>Seja Bem Vindo Neomar</h1>
             </div>
             <div id="somaAgendamento">
-                <h1>52 agendamentos</h1>
-            </div>
+                <h1 id="totalAgendamentos"></h1>
+            </div>            
         </div>
-        <div id="tituloDiaMes">
-            <div class="tituloAgendamento" id="tituloDia" style="background-color: blue;">
-                <h1>Agendamentos Do Dia</h1>
-            </div>
-            <div class="tituloAgendamento" id="tituloMes">
+        <div id="tituloMesVoltar">
+            <div id="tituloMes">
                 <h1>Agendamentos No Mês</h1>
+            </div>
+            <div id="btnVoltar">
+                <i class="fa-solid fa-rotate-left btnVoltar"></i>
             </div>
         </div>
         <div id="agendamentoDiaMes">
-            <div id="agementoDia">
-                <div id="agendamentosAtivos"></div> <!-- Adicionado para exibir os agendamentos -->
-            </div>
             <div id="agementoMes" class="calendario cardsAtivos">
                 <div class="calendario">
                     <div id="cabecalhoMes">
@@ -51,6 +49,7 @@
             </div>            
         </div>
     </div>
-    <script type="module" src="../js/telaGestao.js"></script>
+    <script type="module" src="../js/gestaoCalendario.js"></script>
+    <script type="module" src="../js/gestaoSomaDias.js"></script>
 </body>
 </html>
