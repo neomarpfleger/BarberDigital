@@ -1,25 +1,24 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
 
 #cabecalho {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: auto;
+    width: 100%;
     height: 7rem;
-}
-
-#msnSaudacao {
-    width: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #af8260;
+    /*background: linear-gradient(to left, #322c2b 90%, #ff0000 10%);*/
+    color: #E4C59E;
 }
 
 #somaAgendamento {
-    width: 30%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,6 +28,24 @@
     display: flex;
     width: 100%;
     height: 5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: #af8260;
+    color: #E4C59E;
+}
+
+#tituloMes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;  
+}
+
+#btnVoltar {
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    font-size: 2rem;
 }
 
 .tituloAgendamento:hover {
@@ -39,6 +56,7 @@
     display: flex;
     width: 100%;
     height: calc(100vh - 14rem);
+    background: #E4C59E;
 }
 
 #agementoMes {
@@ -51,28 +69,15 @@
     background-color: #E4C59E;
 }
 
-#tituloMes {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 70%;  
-}
-
-#btnVoltar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30%;
-    font-size: 2rem;
-}
-
 .card {
     width: 10rem;
+    height: 10rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 1rem;
+    margin: 1rem 0.5rem;
     margin-bottom: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .card h3 {
@@ -107,7 +112,7 @@
     backdrop-filter: blur(55px);
     background-color: transparent;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     width: 400px;
 }
@@ -173,4 +178,28 @@
 
 #agendamentoMes.cardsAtivos .card {
     display: block;
+}
+
+@media only screen and (max-width: 480px) {
+    #totalAgendamentos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+
+    #tituloMes h1 {
+        font-size: 1rem; 
+    }
+    
+    #btnVoltar {
+        font-size: 1rem;
+    }
+
+    .calendario {
+
+
+        width: 350px;
+    }
+
 }

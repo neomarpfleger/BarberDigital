@@ -1,4 +1,3 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
 import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
@@ -42,7 +41,7 @@ async function somaAgendamentosAgendados() {
 async function atualizarSomaAgendamentos() {
     const totalAgendamentos = await somaAgendamentosAgendados();
     const somaAgendamentoElement = document.getElementById('totalAgendamentos');
-    somaAgendamentoElement.textContent = `Você esta com ${totalAgendamentos} agendamentos ativos!`;
+    somaAgendamentoElement.textContent = `Seja Bem Vindo Neomar você esta com ${totalAgendamentos} agendamentos ativos!`;
 }
 
 window.onload = async () => {

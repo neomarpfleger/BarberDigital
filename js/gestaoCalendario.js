@@ -174,12 +174,15 @@ document.addEventListener("DOMContentLoaded", function() {
 function toggleVisibility(showCalendario) {
     const calendario = document.getElementById('calendario');
     const agendamentoMes = document.getElementById('agendamentoMes');
+    const btnVoltar = document.getElementById('btnVoltar');
 
     if (showCalendario) {
         calendario.style.display = 'block';
         agendamentoMes.style.display = 'none';
+        btnVoltar.style.display = 'none';
     } else {
         calendario.style.display = 'none';
         agendamentoMes.style.display = 'block';
+        btnVoltar.style.display = 'flex';
     }
 }
