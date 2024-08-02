@@ -27,25 +27,35 @@ function gerarCalendario() {
     // Preencher os dias do mês
     for (let i = 1; i <= ultimoDia; i++) {
         const diaFormatado = i.toString().padStart(2, '0');
-        htmlDias += `<div data-value="${diaFormatado}">${diaFormatado}</div>`;
+        htmlDias += `<div data-value="${diaFormatado}" class="dia">${diaFormatado}</div>`;
     }
 
     diasContainer.innerHTML = htmlDias;
 
     // Adicionar evento de clique a cada dia
     const dias = diasContainer.querySelectorAll('div[data-value]');
+    const hoje = new Date();
+
     dias.forEach(dia => {
-        dia.addEventListener('click', (event) => {
-            const diaSelecionado = event.target.getAttribute('data-value');
-            const mesAnoSelecionado = mesAnoElement.innerText;
+        const diaSelecionado = dia.getAttribute('data-value');
+        const dataDia = new Date(ano, mes, parseInt(diaSelecionado));
 
-            // Armazenar o dia selecionado, mês e ano no localStorage
-            localStorage.setItem('diaSelecionado', diaSelecionado);
-            localStorage.setItem('mesAnoSelecionado', mesAnoSelecionado);
+        // Verificar se o dia é passado
+        if (dataDia < hoje && (dataDia.getMonth() < hoje.getMonth() || dataDia.getFullYear() < hoje.getFullYear())) {
+            dia.classList.add('dia-passado'); // Adicionar classe para dias passados
+        } else {
+            dia.addEventListener('click', (event) => {
+                const diaSelecionado = event.target.getAttribute('data-value');
+                const mesAnoSelecionado = mesAnoElement.innerText;
 
-            // Redirecionar para outra página (opcional)
-            window.location.href = "./agendamentoDoHorario.html";
-        });
+                // Armazenar o dia selecionado, mês e ano no localStorage
+                localStorage.setItem('diaSelecionado', diaSelecionado);
+                localStorage.setItem('mesAnoSelecionado', mesAnoSelecionado);
+
+                // Redirecionar para outra página (opcional)
+                window.location.href = "./agendamentoDoHorario.html";
+            });
+        }
     });
 }
 

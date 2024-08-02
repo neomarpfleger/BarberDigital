@@ -36,6 +36,25 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
     }
 
+    function verificarDataSelecionada() {
+        const dataAtual = new Date();
+        const diaAtual = dataAtual.getDate();
+        const mesAtual = dataAtual.toLocaleString('pt-BR', { month: 'long' });
+        const mesAtualFormatado = mesAtual.charAt(0).toUpperCase() + mesAtual.slice(1);
+        const anoAtual = dataAtual.getFullYear();
+    
+        const dataSelecionada = `${diaSelecionado} de ${mesAnoSelecionado}`;
+        const dataAtualFormatada = `${diaAtual.toString().padStart(2, '0')} de ${mesAtualFormatado} ${anoAtual}`;
+    
+        const dataEhIgual = dataSelecionada === dataAtualFormatada;
+    
+        console.log(`Data selecionada: ${dataSelecionada}`);
+        console.log(`Data atual: ${dataAtualFormatada}`);
+        console.log(`Data é igual ao dia atual: ${dataEhIgual}`);
+        
+        return dataEhIgual;
+    }
+    
     function gerarHorarios() {
         const horarios = [];
         let hora = 9;
@@ -55,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 hora += 1;
             }
         }
-
         return horarios;
     }
 
@@ -82,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
     async function exibirHorarios() {
         const horarios = gerarHorarios();
         horariosContainer.innerHTML = '';
-
+    
         const { mesNumero, ano } = parseMesAno(mesAnoSelecionado);
         const dataConsulta = `${diaSelecionado}/${mesNumero}/${ano}`;
         const agendamentosRef = collection(db, "agendamentos");
@@ -91,16 +109,18 @@ document.addEventListener("DOMContentLoaded", function() {
         const horariosOcupados = querySnapshot.docs
             .filter(doc => doc.data().statusAgendamento === "Agendado")
             .map(doc => doc.data().horario);
-
+    
+        const dataEhIgual = verificarDataSelecionada();
+        const dataAtual = new Date();
+    
         horarios.forEach((horario, index) => {
             const div = document.createElement('div');
             div.className = 'horario';
             div.innerText = horario;
-
+    
             if (horariosOcupados.includes(horario)) {
                 div.classList.add('ocupado');
-
-                // Se este horário estiver ocupado, a div anterior deve ficar cinza
+    
                 if (index > 0 && tempoServico > 21) {
                     const divAnterior = horariosContainer.children[index - 1];
                     if (divAnterior) {
@@ -108,24 +128,50 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 }
             } else {
-                div.addEventListener('click', async (event) => {
-                    const horarioSelecionado = event.target.innerText;
-
-                    if (tempoServico > 21) {
-                        const proximoDiv = horariosContainer.children[index + 1];
-
-                        if (proximoDiv && proximoDiv.classList.contains('ocupado')) {
-                            alert("Tempo insuficiente");
-                            return;
-                        }
+                if (dataEhIgual) {
+                    const [hora, minuto] = horario.split(':').map(Number);
+                    const horarioAtual = dataAtual.getHours() * 60 + dataAtual.getMinutes();
+                    const horarioEmMinutos = hora * 60 + minuto;
+                    
+                    if (horarioEmMinutos <= horarioAtual) {
+                        div.classList.add('bloqueado');
+                        div.style.backgroundColor = 'gray';
+                    } else {
+                        div.addEventListener('click', async (event) => {
+                            const horarioSelecionado = event.target.innerText;
+    
+                            if (tempoServico > 21) {
+                                const proximoDiv = horariosContainer.children[index + 1];
+    
+                                if (proximoDiv && proximoDiv.classList.contains('ocupado')) {
+                                    alert("Tempo insuficiente");
+                                    return;
+                                }
+                            }
+                            localStorage.setItem('horario', horarioSelecionado);
+                            window.location.href = "./confirmacaoEAgradecimento.html";
+                        });
                     }
-                    localStorage.setItem('horario', horarioSelecionado);
-                    window.location.href = "./confirmacaoEAgradecimento.html";
-                });
+                } else {
+                    div.addEventListener('click', async (event) => {
+                        const horarioSelecionado = event.target.innerText;
+    
+                        if (tempoServico > 21) {
+                            const proximoDiv = horariosContainer.children[index + 1];
+    
+                            if (proximoDiv && proximoDiv.classList.contains('ocupado')) {
+                                alert("Tempo insuficiente");
+                                return;
+                            }
+                        }
+                        localStorage.setItem('horario', horarioSelecionado);
+                        window.location.href = "./confirmacaoEAgradecimento.html";
+                    });
+                }
             }
             horariosContainer.appendChild(div);
         });
-    }
+    }    
     mostrarInformacoesUsuario();
     exibirHorarios();
 });

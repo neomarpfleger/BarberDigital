@@ -11,7 +11,35 @@ body {
     background-repeat: no-repeat;
     position: relative;
     color: black;
-}   
+}
+
+#tituloData {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: 0.7rem;
+    color: #E4C59E;
+    z-index: 2;
+    width: auto;
+    height: auto;
+    padding: 0 10px;
+    margin: 2rem 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.521);
+    backdrop-filter: blur(20px);
+    background-color: transparent;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+#tituloData h1 {
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 
 #cabecalhoMes {
     display: flex;
@@ -29,6 +57,11 @@ body {
     padding: 7px 20px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.dia-passado {
+    color: #ccc; /* Cor cinza para indicar que está desativado */
+    pointer-events: none; /* Desabilitar clique */
 }
 
 .calendario {
@@ -54,7 +87,7 @@ body {
 
 .dias-semana div,
 .dias div {
-    width: calc(100% / 8);
+    width: calc(100% / 7);
     text-align: center;
     padding: 7px 0;
 }
@@ -82,4 +115,25 @@ body {
 
 .diaEmBranco {
     margin: 3.5px;
+}
+
+@media only screen and (max-width: 480px) {
+
+    .calendario {
+        padding: 10px;
+        width: 300px;
+    }
+
+    .dias div {
+        width: 35px;
+        height: 25px;
+    }
+
+    .dias div:not(:empty) {
+        margin: 2px 2.9px;
+    }
+
+    .diaEmBranco {
+        margin: 3.9px;
+    }
 }
