@@ -1,10 +1,12 @@
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 400;
+    font-style:normal;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #322c2b;
     margin: 0;
+    padding: 0;
+    color: black;
 }
 
 .container {
@@ -12,12 +14,12 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 2rem auto;
-    width: 100%;
+    width: 80%;
     max-width: 500px;
 }
 
-.usuario-card, .agradecimento-card {
-    background-color: #fff;
+.usuario-card {
+    background-color: #E4C59E;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -27,7 +29,7 @@ body {
     display: block;
 }
 
-.usuario-card h3, .agradecimento-card h3 {
+.usuario-card h3 {
     margin: 0;
     font-size: 1.2em;
     color: #333;
@@ -64,22 +66,53 @@ body {
     transition: background-color 0.3s;
 }
 
-.horario.ocupado {
-    background-color: #ff0000;
+#divMsnDeSucesso {
+    display: none;
+    width: 80%;
+    justify-content: center;
+    color: #333;
+    background: #E4C59E;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.horario:hover {
-    background-color: #0056b3;
+#msnDeSucesso {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.show {
+    display: block;
+    animation: rotateIn 2s ease-in-out;
+    transition: ease-in
+    ;
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+
+        transform: rotateY(360deg);
+    }
+    to {
+        opacity: 1;
+        transform: rotateY(0deg);
+    }
 }
 
 .buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
 }
 
+#novoAgendamento {
+    display: none;
+}
+
 button {
-    background-color: #007bff;
+    background-color: #af8260;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -90,5 +123,5 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #803B3D;
 }

@@ -161,7 +161,7 @@
     border-radius: 5px;
 }
 
-/* Novo estilo para a soma dos agendamentos */
+/* Estilo para a soma dos agendamentos */
 .somaAgendamentos {
     border: none;
     font-size: 0.8rem;
@@ -197,8 +197,6 @@
     }
 
     .calendario {
-
-
         width: 350px;
     }
 

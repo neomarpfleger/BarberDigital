@@ -75,10 +75,15 @@ btnConfirmacaoDeAgendamento.addEventListener('click', async () => {
         const minutoFormatado = (novoMinuto >= 60 ? novoMinuto - 60 : novoMinuto).toString().padStart(2, '0');
         const novoHorario = `${novaHora.toString().padStart(2, '0')}:${minutoFormatado}`;
 
-        await addAgendamento(novoHorario, data, nomeUsuario, nomeServico, 20); // Adiciona mais 20 minutos de serviço
+        await addAgendamento(novoHorario, telUsuario, data, nomeUsuario, nomeServico, tempoServico, 20); // Adiciona mais 20 minutos de serviço
     }
+    
+    const novoAgendamento = document.getElementById("novoAgendamento");
+    const divMsnDeSucesso = document.getElementById("divMsnDeSucesso");
+    divMsnDeSucesso.style.display="block";
+    novoAgendamento.style.display="block";
+    btnConfirmacaoDeAgendamento.style.display="none";
 
-    alert('Agendamento realizado com sucesso');
     exibirHorarios();
 });
 
@@ -128,11 +133,3 @@ const novoAgendamento = document.querySelector('#novoAgendamento');
 novoAgendamento.addEventListener("click", () => {
     window.location.href = "../index.html";
 });
-
-// Função para fechar a página
-function fecharPagina() {
-    window.close();
-}
-
-// Adicionando um event listener ao botão para chamar a função quando clicado
-document.getElementById('fecharPagina').addEventListener('click', fecharPagina);

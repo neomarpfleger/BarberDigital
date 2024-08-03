@@ -59,16 +59,11 @@ body {
     cursor: pointer;
 }
 
-.dia-passado {
-    color: #ccc; /* Cor cinza para indicar que está desativado */
-    pointer-events: none; /* Desabilitar clique */
-}
-
 .calendario {
     backdrop-filter: blur(55px);
     background-color: transparent;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     width: 400px;
 }
@@ -83,13 +78,14 @@ body {
     justify-content: space-between;
     font-weight: bold;
     margin-top: 10px;
+    
 }
 
 .dias-semana div,
 .dias div {
     width: calc(100% / 7);
     text-align: center;
-    padding: 7px 0;
+    padding: 0 2px 0 0;
 }
 
 .dias {
@@ -99,7 +95,8 @@ body {
 
 .dias div {
     height: 40px;
-    line-height: 40px;
+    line-height: 25px;
+    
 }
 
 .dias div:hover {
@@ -108,13 +105,19 @@ body {
 }
 
 .dias div:not(:empty) {
-    border: 1px solid #E4C59E;
-    margin: 2px 2.5px;
+    margin: 2px 3.3px 2px 3;
     border-radius: 5px;
 }
 
 .diaEmBranco {
-    margin: 3.5px;
+    margin: 2px 3.3px 2px 3;
+    border-radius: 5px;
+    pointer-events: none;
+}
+
+.dia-passado {
+    color: #ccc; /* Cor cinza para indicar que está desativado */
+    pointer-events: none; /* Desabilitar clique */
 }
 
 @media only screen and (max-width: 480px) {
@@ -130,10 +133,10 @@ body {
     }
 
     .dias div:not(:empty) {
-        margin: 2px 2.9px;
+        margin: 2px 2.7px;
     }
 
     .diaEmBranco {
-        margin: 3.9px;
+        margin: 3px;
     }
 }
