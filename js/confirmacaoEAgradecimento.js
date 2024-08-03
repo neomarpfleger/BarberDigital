@@ -133,3 +133,15 @@ const novoAgendamento = document.querySelector('#novoAgendamento');
 novoAgendamento.addEventListener("click", () => {
     window.location.href = "../index.html";
 });
+
+
+document.getElementById('showDivButton').addEventListener('click', function() {
+    const tremorDiv = document.getElementById('tremorDiv');
+    tremorDiv.classList.remove('hidden');
+    tremorDiv.classList.add('shake');
+    
+    setTimeout(function() {
+        tremorDiv.classList.remove('shake');
+        tremorDiv.classList.add('stop-shake');
+    }, 200);
+});

@@ -13,9 +13,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin: 2rem auto;
     width: 80%;
     max-width: 500px;
+    height: 100vh;
 }
 
 .usuario-card {
@@ -24,7 +26,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 5rem;
     text-align: center;
     display: block;
 }
@@ -75,18 +77,13 @@ body {
     border-radius: 10px;
     margin-bottom: 2rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /*animation: rotateIn 2s ease-in-out;*/
+    transition: ease-in
 }
 
 #msnDeSucesso {
     font-size: 1.3rem;
     text-align: center;
-}
-
-.show {
-    display: block;
-    animation: rotateIn 2s ease-in-out;
-    transition: ease-in
-    ;
 }
 
 @keyframes rotateIn {
@@ -100,6 +97,49 @@ body {
         transform: rotateY(0deg);
     }
 }
+
+
+
+.hidden {
+    display: none;
+}
+
+#tremorDiv {
+    width: 200px;
+    height: 100px;
+    background-color: lightblue;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 100px;
+    border: 1px solid blue;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+}
+
+.shake {
+    display: block;
+    animation: shake 0.1s infinite;
+}
+
+.stop-shake {
+    display: block;
+    animation: none;
+}
+
+
 
 .buttons {
     display: flex;
