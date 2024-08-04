@@ -1,7 +1,7 @@
 body {
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 400;
-    font-style:normal;
+    font-style: normal;
     height: 100vh;
     background-color: #322c2b;
     margin: 0;
@@ -77,69 +77,25 @@ body {
     border-radius: 10px;
     margin-bottom: 2rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /*animation: rotateIn 2s ease-in-out;*/
-    transition: ease-in
+    animation: rotateIn 2s ease-in-out;
+    transition: ease-out;
+}
+
+@keyframes rotateIn {
+    0% {
+        visibility: hidden;
+        transform: rotateY(0deg);
+    }
+    100% {
+        visibility: visible;
+        transform: rotateY(360deg);
+    }
 }
 
 #msnDeSucesso {
     font-size: 1.3rem;
     text-align: center;
 }
-
-@keyframes rotateIn {
-    from {
-        opacity: 0;
-
-        transform: rotateY(360deg);
-    }
-    to {
-        opacity: 1;
-        transform: rotateY(0deg);
-    }
-}
-
-
-
-.hidden {
-    display: none;
-}
-
-#tremorDiv {
-    width: 200px;
-    height: 100px;
-    background-color: lightblue;
-    margin-top: 20px;
-    text-align: center;
-    line-height: 100px;
-    border: 1px solid blue;
-}
-
-@keyframes shake {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    25% {
-        transform: translateX(-5px);
-    }
-    50% {
-        transform: translateX(5px);
-    }
-    75% {
-        transform: translateX(-5px);
-    }
-}
-
-.shake {
-    display: block;
-    animation: shake 0.1s infinite;
-}
-
-.stop-shake {
-    display: block;
-    animation: none;
-}
-
-
 
 .buttons {
     display: flex;

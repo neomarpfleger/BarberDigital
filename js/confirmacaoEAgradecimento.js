@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function() {
 const btnConfirmacaoDeAgendamento = document.querySelector("#btnConfirmacaoDeAgendamento");
 
 btnConfirmacaoDeAgendamento.addEventListener('click', async () => {
-
     const nomeUsuario = localStorage.getItem('nomeUsuario') || 'Não fornecido';
     const telUsuario = localStorage.getItem('telUsuario') || 'Não fornecido';
     const nomeServico = localStorage.getItem('selectedService') || 'Não selecionado';
@@ -80,11 +79,9 @@ btnConfirmacaoDeAgendamento.addEventListener('click', async () => {
     
     const novoAgendamento = document.getElementById("novoAgendamento");
     const divMsnDeSucesso = document.getElementById("divMsnDeSucesso");
-    divMsnDeSucesso.style.display="block";
-    novoAgendamento.style.display="block";
-    btnConfirmacaoDeAgendamento.style.display="none";
-
-    exibirHorarios();
+    divMsnDeSucesso.style.display = "block";
+    novoAgendamento.style.display = "block";
+    btnConfirmacaoDeAgendamento.style.display = "none";
 });
 
 // Função para adicionar agendamento ao Firestore
@@ -97,7 +94,7 @@ async function addAgendamento(horario, telUsuario, data, nomeUsuario, nomeServic
             tempoServico: tempoServico,
             data: data,
             horario: horario,
-            statusAgendamento:'Agendado',
+            statusAgendamento: 'Agendado',
             timestamp: new Date() // Adiciona um timestamp
         });
         console.log("Documento adicionado com ID: ", docRef.id);
@@ -132,16 +129,4 @@ function parseMesAno(mesAnoSelecionado) {
 const novoAgendamento = document.querySelector('#novoAgendamento');
 novoAgendamento.addEventListener("click", () => {
     window.location.href = "../index.html";
-});
-
-
-document.getElementById('showDivButton').addEventListener('click', function() {
-    const tremorDiv = document.getElementById('tremorDiv');
-    tremorDiv.classList.remove('hidden');
-    tremorDiv.classList.add('shake');
-    
-    setTimeout(function() {
-        tremorDiv.classList.remove('shake');
-        tremorDiv.classList.add('stop-shake');
-    }, 200);
 });
