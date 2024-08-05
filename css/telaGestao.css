@@ -55,8 +55,11 @@
 #agendamentoDiaMes {
     display: flex;
     width: 100%;
-    height: calc(100vh - 14rem);
+    justify-content: center;
+    height: auto;
+    min-height: 100vh;
     background: #E4C59E;
+    flex-wrap: wrap;
 }
 
 #agementoMes {
@@ -70,14 +73,22 @@
 }
 
 .card {
-    width: 10rem;
-    height: 10rem;
+    width: 9rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 1rem;
     margin: 1rem 0.5rem;
     margin-bottom: 1rem;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    transition: height 0.3s ease;
+}
+
+.card.focused {
+    height: 10rem;
+}
+
+.card.unfocused {
+    height: 4.5rem;
 }
 
 .card h3 {
@@ -87,6 +98,7 @@
 .card p {
     margin: 0.2rem 0;
 }
+
 
 /*Calendario Mes*/
 
@@ -199,5 +211,6 @@
     .calendario {
         width: 350px;
     }
+
 
 }

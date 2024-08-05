@@ -25,7 +25,8 @@ function getFormattedDate(date = new Date()) {
 }
 getFormattedDate();
 
-// Função para carregar agendamentos de um dia específico
+let cardAberto = null; // Variável para armazenar o card atualmente aberto
+
 async function carregaAgendamentosPorDia(data) {
     const agendamentoMesDiv = document.getElementById('agendamentoDiaMes');
     agendamentoMesDiv.innerHTML = ''; // Limpar resultados anteriores
@@ -35,21 +36,59 @@ async function carregaAgendamentosPorDia(data) {
 
     try {
         const querySnapshot = await getDocs(q);
-        
+
         if (!querySnapshot.empty) {
+            // Coletar e ordenar os agendamentos por horário
+            const agendamentos = [];
             querySnapshot.forEach((doc) => {
-                const agendamento = doc.data();
+                agendamentos.push(doc.data());
+            });
+            agendamentos.sort((a, b) => a.horario.localeCompare(b.horario));
+
+            agendamentos.forEach((agendamento) => {
                 // Criar card com as informações do agendamento
                 const card = document.createElement('div');
-                card.className = 'card';
+                card.className = 'card unfocused';
+
+                // Definir a cor do status com base no valor
+                let statusColor = agendamento.statusAgendamento === 'Cancelado' ? 'red' : 
+                                  agendamento.statusAgendamento === 'Agendado' ? 'green' : 'black';
+
+                // Criar conteúdo do card
                 card.innerHTML = `
                     <h3>${agendamento.nomeUsuario}</h3>
-                    <p>Telefone: ${agendamento.telUsuario}</p>
-                    <p>Data: ${agendamento.data}</p>
                     <p>Hora: ${agendamento.horario}</p>
-                    <p>Serviço: ${agendamento.nomeServico}</p>
-                    <p>Tempo: ${agendamento.tempoServico}</p>
+                    <p style="color: ${statusColor};">Status: ${agendamento.statusAgendamento}</p>
+                    <div class="detalhes" style="display: none;">
+                        <p>Data: ${agendamento.data}</p>
+                        <p>Telefone: ${agendamento.telUsuario}</p>
+                        <p>Serviço: ${agendamento.nomeServico}</p>
+                        <p>Tempo: ${agendamento.tempoServico}</p>
+                    </div>
                 `;
+
+                // Adicionar evento de clique ao card
+                card.addEventListener('click', () => {
+                    if (cardAberto && cardAberto !== card) {
+                        const detalhesAberto = cardAberto.querySelector('.detalhes');
+                        detalhesAberto.style.display = 'none';
+                        cardAberto.classList.remove('focused');
+                        cardAberto.classList.add('unfocused');
+                    }
+                    const detalhes = card.querySelector('.detalhes');
+                    if (detalhes.style.display === 'none') {
+                        detalhes.style.display = 'block';
+                        card.classList.remove('unfocused');
+                        card.classList.add('focused');
+                        cardAberto = card;
+                    } else {
+                        detalhes.style.display = 'none';
+                        card.classList.remove('focused');
+                        card.classList.add('unfocused');
+                        cardAberto = null;
+                    }
+                });
+
                 agendamentoMesDiv.appendChild(card);
             });
 
@@ -62,6 +101,7 @@ async function carregaAgendamentosPorDia(data) {
         agendamentoMesDiv.innerHTML = '<p>Erro ao carregar os agendamentos.</p>';
     }
 }
+
 
 // Função para carregar agendamentos do mês
 async function carregaAgendamentosMes(ano, mes) {
@@ -169,6 +209,7 @@ document.addEventListener("DOMContentLoaded", function() {
         location.reload();
     });
 });
+
 
 // Função toggleVisibility
 function toggleVisibility(showCalendario) {
