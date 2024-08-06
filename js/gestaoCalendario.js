@@ -95,10 +95,14 @@ async function carregaAgendamentosPorDia(data) {
                         cardAberto = null;
                     }
                 });
+                const btnVoltar = document.getElementById('btnVoltar');
+                btnVoltar.style.display = "flex";
+                
                 const navegacaoCards = document.getElementById('navegacaoCards');
                 navegacaoCards.style.display= "block";
 
                 agendamentoMesDiv.appendChild(card);
+                
             });
 
             const cards = document.querySelectorAll('.card');
