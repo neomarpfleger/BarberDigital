@@ -27,8 +27,10 @@ getFormattedDate();
 
 let cardAberto = null; // Variável para armazenar o card atualmente aberto
 
+let currentCardIndex = 0; // Índice do primeiro card visível
+
 async function carregaAgendamentosPorDia(data) {
-    const agendamentoMesDiv = document.getElementById('agendamentoDiaMes');
+    const agendamentoMesDiv = document.getElementById('agendamentoMesDiv');
     agendamentoMesDiv.innerHTML = ''; // Limpar resultados anteriores
 
     const agendamentosRef = collection(db, "agendamentos");
@@ -45,7 +47,7 @@ async function carregaAgendamentosPorDia(data) {
             });
             agendamentos.sort((a, b) => a.horario.localeCompare(b.horario));
 
-            agendamentos.forEach((agendamento) => {
+            agendamentos.forEach((agendamento, index) => {
                 // Criar card com as informações do agendamento
                 const card = document.createElement('div');
                 card.className = 'card unfocused';
@@ -66,6 +68,11 @@ async function carregaAgendamentosPorDia(data) {
                         <p>Tempo: ${agendamento.tempoServico}</p>
                     </div>
                 `;
+
+                // Adicionar a classe 'oculto' a partir do sexto card
+                if (index >= 5) {
+                    card.classList.add('oculto');
+                }
 
                 // Adicionar evento de clique ao card
                 card.addEventListener('click', () => {
@@ -88,8 +95,30 @@ async function carregaAgendamentosPorDia(data) {
                         cardAberto = null;
                     }
                 });
+                const navegacaoCards = document.getElementById('navegacaoCards');
+                navegacaoCards.style.display= "block";
 
                 agendamentoMesDiv.appendChild(card);
+            });
+
+            const cards = document.querySelectorAll('.card');
+            const prevBtn = document.getElementById('prevCards');
+            const nextBtn = document.getElementById('nextCards');
+
+            prevBtn.addEventListener('click', () => {
+                if (currentCardIndex > 0) {
+                    cards[currentCardIndex + 4].classList.add('oculto');
+                    currentCardIndex--;
+                    cards[currentCardIndex].classList.remove('oculto');
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentCardIndex + 5 < cards.length) {
+                    cards[currentCardIndex].classList.add('oculto');
+                    currentCardIndex++;
+                    cards[currentCardIndex + 4].classList.remove('oculto');
+                }
             });
 
         } else {

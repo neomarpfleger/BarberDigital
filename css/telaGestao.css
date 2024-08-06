@@ -54,26 +54,24 @@
 
 #agendamentoDiaMes {
     display: flex;
-    width: 100%;
+    align-items: center;
     justify-content: center;
-    height: auto;
-    min-height: 100vh;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 12rem);
     background: #E4C59E;
-    flex-wrap: wrap;
 }
 
-#agementoMes {
+#agendamentoMesDiv {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: auto;
-    padding: 1rem;
+    width: 80%;
     background-color: #E4C59E;
 }
 
 .card {
-    width: 9rem;
+    width: 10rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 1rem;
@@ -81,6 +79,10 @@
     margin-bottom: 1rem;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
     transition: height 0.3s ease;
+}
+
+#navegacaoCards {
+    display: none;
 }
 
 .card.focused {
@@ -97,6 +99,10 @@
 
 .card p {
     margin: 0.2rem 0;
+}
+
+.card.oculto {
+    display: none;
 }
 
 
