@@ -39,9 +39,13 @@ async function somaAgendamentosAgendados() {
 
 // Função para atualizar a soma dos agendamentos com status "agendado"
 async function atualizarSomaAgendamentos() {
+
+    //Resgata o nome do usuario armazenado no localStorage
+    let nomeUsuarioLogado = localStorage.getItem("nomeUsuarioLogado");
     const totalAgendamentos = await somaAgendamentosAgendados();
     const somaAgendamentoElement = document.getElementById('totalAgendamentos');
-    somaAgendamentoElement.textContent = `Seja Bem Vindo Neomar você esta com ${totalAgendamentos} agendamentos ativos!`;
+    somaAgendamentoElement.innerHTML = `<h1 class= "tituloh1" >Seja Bem Vindo ${nomeUsuarioLogado}</h1>
+                                        <h2 class= "tituloh2" titulo>Você está com <span>${totalAgendamentos}</span> agendamentos ativos!</h2>`
 }
 
 window.onload = async () => {

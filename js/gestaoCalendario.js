@@ -99,7 +99,7 @@ async function carregaAgendamentosPorDia(data) {
                 btnVoltar.style.display = "flex";
                 
                 const navegacaoCards = document.getElementById('navegacaoCards');
-                navegacaoCards.style.display= "block";
+                navegacaoCards.style.display= "flex";
 
                 agendamentoMesDiv.appendChild(card);
                 
@@ -237,6 +237,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const btnVoltar = document.querySelector(".btnVoltar");
     btnVoltar.addEventListener("click", function() {
+        let nomeUsuarioLogado = localStorage.getItem("nomeUsuarioLogado");
         const agendamentoMesDiv = document.getElementById('agendamentoDiaMes');
         agendamentoMesDiv.innerHTML = ''; // Limpar resultados anteriores
         location.reload();

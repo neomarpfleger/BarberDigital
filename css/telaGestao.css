@@ -24,6 +24,20 @@
     justify-content: center;
 }
 
+.tituloh1 {
+    font-size: 170%;
+    margin-top: 2rem;
+}
+
+.tituloh2 {
+    font-size: 120%;
+}
+
+.tituloh2 span {
+    font-size: 130%;
+    color: blue;
+}
+
 #tituloMesVoltar {
     display: flex;
     width: 100%;
@@ -227,8 +241,13 @@
         font-size: 1rem;
     }
 
-    #tituloMes h1 {
-        font-size: 1rem; 
+    #totalAgendamentos {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #tituloMes h2 {
+        font-size: 1.1rem;
     }
     
     #btnVoltar {
@@ -239,5 +258,8 @@
         width: 350px;
     }
 
+    #navegacaoCards {
+        display: flex;
+    }
 
 }
