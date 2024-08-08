@@ -69,8 +69,8 @@ async function carregaAgendamentosPorDia(data) {
                     </div>
                 `;
 
-                // Adicionar a classe 'oculto' a partir do sexto card
-                if (index >= 5) {
+                // Adicionar a classe 'oculto' a partir do sexto card ou segundo card se for mobile
+                if ((index >= 5 && !isMobile()) || (index >= 1 && isMobile())) {
                     card.classList.add('oculto');
                 }
 
@@ -111,17 +111,17 @@ async function carregaAgendamentosPorDia(data) {
 
             prevBtn.addEventListener('click', () => {
                 if (currentCardIndex > 0) {
-                    cards[currentCardIndex + 4].classList.add('oculto');
+                    cards[currentCardIndex + (isMobile() ? 0 : 4)].classList.add('oculto');
                     currentCardIndex--;
                     cards[currentCardIndex].classList.remove('oculto');
                 }
             });
 
             nextBtn.addEventListener('click', () => {
-                if (currentCardIndex + 5 < cards.length) {
+                if (currentCardIndex + (isMobile() ? 1 : 5) < cards.length) {
                     cards[currentCardIndex].classList.add('oculto');
                     currentCardIndex++;
-                    cards[currentCardIndex + 4].classList.remove('oculto');
+                    cards[currentCardIndex + (isMobile() ? 0 : 4)].classList.remove('oculto');
                 }
             });
 
@@ -135,6 +135,10 @@ async function carregaAgendamentosPorDia(data) {
     }
 }
 
+// Função para detectar se o dispositivo é mobile
+function isMobile() {
+    return window.innerWidth <= 480;
+}
 
 // Função para carregar agendamentos do mês
 async function carregaAgendamentosMes(ano, mes) {

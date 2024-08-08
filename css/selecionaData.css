@@ -85,7 +85,9 @@ body {
 .dias div {
     width: calc(100% / 7);
     text-align: center;
-    padding: 0 2px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .dias {
@@ -105,14 +107,17 @@ body {
 }
 
 .dias div:not(:empty) {
-    margin: 2px 3.3px 2px 3;
     border-radius: 5px;
 }
 
 .diaEmBranco {
-    margin: 2px 3.3px 2px 3;
     border-radius: 5px;
     pointer-events: none;
+}
+
+.dia-passado {
+    color: #ccc; /* Cor cinza para indicar que está desativado */
+    pointer-events: none; /* Desabilitar clique */
 }
 
 .dia-passado {
@@ -134,10 +139,10 @@ body {
     }
 
     .dias div:not(:empty) {
-        margin: 2px 2.7px;
+        margin: 2px 5.7px 2px 2px;
     }
 
     .diaEmBranco {
-        margin: 3px;
+        margin: 2px 5.7px 2px 2px;
     }
 }

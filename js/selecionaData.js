@@ -40,9 +40,15 @@ function gerarCalendario() {
         const diaSelecionado = dia.getAttribute('data-value');
         const dataDia = new Date(ano, mes, parseInt(diaSelecionado));
 
-        // Verificar se o dia é passado
-        if (dataDia < hoje && (dataDia.getMonth() < hoje.getMonth() || dataDia.getFullYear() < hoje.getFullYear() || (dataDia.getMonth() === hoje.getMonth() && dataDia.getDate() < hoje.getDate()))) {
-            dia.classList.add('dia-passado'); // Adicionar classe para dias passados
+        // Verificar se o dia é passado ou se é domingo
+        if (
+            (dataDia < hoje && 
+            (dataDia.getMonth() < hoje.getMonth() || 
+            dataDia.getFullYear() < hoje.getFullYear() || 
+            (dataDia.getMonth() === hoje.getMonth() && dataDia.getDate() < hoje.getDate()))) || 
+            dataDia.getDay() === 0 // 0 representa domingo
+        ) {
+            dia.classList.add('dia-passado'); // Adicionar classe para dias passados e domingos
         } else {
             dia.addEventListener('click', (event) => {
                 const diaSelecionado = event.target.getAttribute('data-value');
@@ -57,6 +63,7 @@ function gerarCalendario() {
             });
         }
     });
+
 }
 
 document.getElementById('proximoMes').addEventListener('click', () => {

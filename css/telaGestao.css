@@ -262,4 +262,8 @@
         display: flex;
     }
 
+    .navegacaoBtn {
+        margin: 2rem 1.5rem 1rem;
+    }
+
 }

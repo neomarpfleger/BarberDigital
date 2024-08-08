@@ -77,7 +77,7 @@ body {
     border-radius: 10px;
     margin-bottom: 2rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    animation: rotateIn 2s ease-in-out;
+    animation: rotateIn 1s ease-in-out;
     transition: ease-out;
 }
 
