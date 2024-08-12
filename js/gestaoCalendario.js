@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+import { getFirestore, collection, query, where, getDocs, doc, updateDoc  } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -43,9 +43,13 @@ async function carregaAgendamentosPorDia(data) {
             // Coletar e ordenar os agendamentos por horário
             const agendamentos = [];
             querySnapshot.forEach((doc) => {
-                agendamentos.push(doc.data());
+                const agendamentoData = doc.data();
+                agendamentoData.id = doc.id; // Armazena o ID do documento no Firestore
+                agendamentos.push(agendamentoData);
             });
             agendamentos.sort((a, b) => a.horario.localeCompare(b.horario));
+
+            let currentCardIndex = 0;
 
             agendamentos.forEach((agendamento, index) => {
                 // Criar card com as informações do agendamento
@@ -54,20 +58,27 @@ async function carregaAgendamentosPorDia(data) {
 
                 // Definir a cor do status com base no valor
                 let statusColor = agendamento.statusAgendamento === 'Cancelado' ? 'red' : 
-                                  agendamento.statusAgendamento === 'Agendado' ? 'green' : 'black';
+                                  agendamento.statusAgendamento === 'Agendado' ? 'green' : 'var(--secondary-color)';
 
                 // Criar conteúdo do card
                 card.innerHTML = `
                     <h3>${agendamento.nomeUsuario}</h3>
                     <p>Hora: ${agendamento.horario}</p>
-                    <p style="color: ${statusColor};">Status: ${agendamento.statusAgendamento}</p>
+                    <p style="color: ${statusColor};" class="status-text">Status: ${agendamento.statusAgendamento}</p>
                     <div class="detalhes" style="display: none;">
                         <p>Data: ${agendamento.data}</p>
                         <p>Telefone: ${agendamento.telUsuario}</p>
                         <p>Serviço: ${agendamento.nomeServico}</p>
                         <p>Tempo: ${agendamento.tempoServico}</p>
+                        <button class="btnConfirmaAgendamento" type="submit">Confirma Atendimento</button>
                     </div>
                 `;
+                
+                // Esconder o botão se o status for "Cancelado"
+                const btnConfirmaAgendamento = card.querySelector('.btnConfirmaAgendamento');
+                if (agendamento.statusAgendamento == "Cancelado" || agendamento.statusAgendamento == "Atendido") {
+                    btnConfirmaAgendamento.style.display = "none";
+                }
 
                 // Adicionar a classe 'oculto' a partir do sexto card ou segundo card se for mobile
                 if ((index >= 5 && !isMobile()) || (index >= 1 && isMobile())) {
@@ -95,6 +106,28 @@ async function carregaAgendamentosPorDia(data) {
                         cardAberto = null;
                     }
                 });
+
+                // Adicionar evento de clique ao botão de confirmação
+                btnConfirmaAgendamento.addEventListener("click", async function(event){
+                    event.stopPropagation();
+                    try {
+                        const agendamentoRef = doc(db, "agendamentos", agendamento.id);
+                        await updateDoc(agendamentoRef, {
+                            statusAgendamento: "Atendido"
+                        });
+
+                        // Atualizar a cor e o texto do status no card
+                        const statusText = card.querySelector('.status-text');
+                        statusText.style.color = 'var(--terceary-color)';
+                        statusText.textContent = "Status: Atendido";
+
+                        alert("Atendimento confirmado para " + agendamento.nomeUsuario);
+                    } catch (error) {
+                        console.error("Erro ao atualizar o status do agendamento:", error);
+                        alert("Erro ao confirmar o atendimento.");
+                    }
+                });
+
                 const btnVoltar = document.getElementById('btnVoltar');
                 btnVoltar.style.display = "flex";
                 
@@ -102,7 +135,6 @@ async function carregaAgendamentosPorDia(data) {
                 navegacaoCards.style.display= "flex";
 
                 agendamentoMesDiv.appendChild(card);
-                
             });
 
             const cards = document.querySelectorAll('.card');

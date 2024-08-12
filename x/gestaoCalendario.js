@@ -197,3 +197,11 @@ btnVoltar.addEventListener("click", function() {
     agendamentoMesDiv.innerHTML = ''; // Limpar resultados anteriores
     location.reload();
 });
+
+
+// Adicionar evento de clique ao botão de confirmação
+/*const btnConfirmaAgendamento = card.querySelector('.btnConfirmaAgendamento');
+btnConfirmaAgendamento.addEventListener("click", function(event){
+    event.stopPropagation();
+    alert("Atendimento confirmado para " + agendamento.nomeUsuario);
+});*/
