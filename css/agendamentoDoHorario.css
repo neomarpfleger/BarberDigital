@@ -1,12 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #F4EEE0;
+    --secondary-color: #6D5D6E;
+    --terceary-color: #4F4557;
+}
+
 body {
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 400;
     font-style:normal;
     height: 100vh;
-    background-color: #322c2b;
+    background-color: var(--primary-color);
     margin: 0;
     padding: 0;
-    color: black;
+    color: var(--primary-color);
 }
 
 .container {
@@ -19,7 +30,7 @@ body {
 }
 
 .usuario-card {
-    background-color: #E4C59E;
+    background-color: var(--secondary-color);
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -39,7 +50,7 @@ body {
 }
 
 .horarios-container {
-    background-color: #E4C59E;
+    background-color: var(--secondary-color);
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -59,9 +70,9 @@ body {
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
-    background-color: #af8260;
-    color: white;
-    transition: background-color 0.9s;
+    background-color: var(--terceary-color);
+    color: var(--primary-color);
+    transition: scale 0.3s;
 }
 
 .horario.ocupado {
@@ -69,5 +80,6 @@ body {
 }
 
 .horario:hover {
-    background-color: #803b3d;
+    scale: 1.1;
+    box-shadow: 0 0 10px var(--primary-color);
 }

@@ -1,3 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #F4EEE0;
+    --secondary-color: #6D5D6E;
+    --terceary-color: #4F4557;
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -19,7 +29,7 @@ body {
     justify-content: center;
     position: relative;
     font-size: 0.7rem;
-    color: #E4C59E;
+    color: var(--primary-color);
     z-index: 2;
     width: 90%;
     height: auto;
@@ -52,8 +62,8 @@ body {
 #mesAnterior {
     border: none;
     font-size: 1.5rem;
-    background-color: #AF8260;
-    color: #E4C59E;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
     padding: 7px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -103,7 +113,7 @@ body {
 
 .dias div:hover {
     cursor: pointer;
-    background-color: #AF8260;
+    background-color: var(--secondary-color);
 }
 
 .dias div:not(:empty) {

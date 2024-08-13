@@ -79,7 +79,7 @@ btnConfirmacaoDeAgendamento.addEventListener('click', async () => {
     
     const novoAgendamento = document.getElementById("novoAgendamento");
     const divMsnDeSucesso = document.getElementById("divMsnDeSucesso");
-    divMsnDeSucesso.style.display = "block";
+    divMsnDeSucesso.style.display = "flex";
     novoAgendamento.style.display = "block";
     btnConfirmacaoDeAgendamento.style.display = "none";
 });

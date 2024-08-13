@@ -1,12 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #F4EEE0;
+    --secondary-color: #6D5D6E;
+    --terceary-color: #4F4557;
+    --font-titulo: "Rampart One", sans-serif; 
+}
+
 body {
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 400;
     font-style: normal;
     height: 100vh;
-    background-color: #322c2b;
+    background-color: var(--primary-color);
     margin: 0;
     padding: 0;
-    color: black;
 }
 
 .container {
@@ -21,7 +32,7 @@ body {
 }
 
 .usuario-card {
-    background-color: #E4C59E;
+    background-color: var(--secondary-color);
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -33,13 +44,13 @@ body {
 
 .usuario-card h3 {
     margin: 0;
-    font-size: 1.2em;
-    color: #333;
+    font-size: 1.5em;
+    color: var(--terceary-color);
 }
 
 .usuario-card p, .agradecimento-card p {
     margin: 5px 0;
-    color: #555;
+    color: var(--primary-color);
 }
 
 .horarios-container {
@@ -70,10 +81,13 @@ body {
 
 #divMsnDeSucesso {
     display: none;
-    width: 80%;
+    align-items: center;
     justify-content: center;
-    color: #333;
-    background: #E4C59E;
+    width: 50%;
+    height: 4rem;
+    justify-content: center;
+    color: var(--primary-color);
+    background: var(--secondary-color);
     border-radius: 10px;
     margin-bottom: 2rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -108,16 +122,19 @@ body {
 }
 
 button {
-    background-color: #af8260;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
     margin: 10px;
+    font-weight: bold;
+    letter-spacing: 3px;
 }
 
 button:hover {
-    background-color: #803B3D;
+    background-color: var(--terceary-color);
+    scale: 1.1;
 }
