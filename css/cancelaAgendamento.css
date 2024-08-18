@@ -142,9 +142,23 @@ hr {
     scale: 1.1;
 }
 
-#agendamentosAtivos {
+#agendamentosCards {
     display: flex;
+    align-items: center;
+}
 
+.btnMovimentoAgendamentos {
+    display: none;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    margin: 0 3rem;
+    background-color: var(--secondary-color);
+    border: 1px solid transparent;
+    border-radius: 25px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    box-shadow: 0 0 7px var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .card {
@@ -156,7 +170,7 @@ hr {
     justify-content: center;
     color: var(--primary-color);
     padding: 16px;
-    margin: 8px;
+    margin: 3rem;
     /*border: 2px solid rgba(255, 255, 255, 0.5);*/
     backdrop-filter: blur(55px);
     background-color: transparent;
@@ -183,7 +197,7 @@ hr {
     font-style: normal;
     letter-spacing: 0.8px;
     box-shadow: 0 0 7px var(--secondary-color);
-    color: var(--primary-color);
+    color: var(--primary-color); 
 }
 
 .btnCancelaAgendamento:hover {
@@ -192,9 +206,26 @@ hr {
     scale: 1.1;
 }
 
+#agendamentosAtivos {
+    width: 20rem;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.card {
+    min-width: 80%;
+    scroll-snap-align: center;
+    transition: transform 0.3s ease-in-out;
+}
 
 @media only screen and (max-width: 480px) {
 
-
+    .card {
+        min-width: 70%;
+        scroll-snap-align: center;
+        transition: transform 0.9s ease-in-out;
+    }
 
 }

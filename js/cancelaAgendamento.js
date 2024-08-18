@@ -13,10 +13,10 @@ const firebaseConfig = {
 };
 
 // Inicializar Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig); 
 const db = getFirestore(app);
 
-// Função para verificar e imprimir agendamentos
+// Função para verificar e imprimir agendamentos (modificada)
 async function verificarAgendamentos(telUsuario) {
     const agendamentosRef = collection(db, "agendamentos");
     const q = query(
@@ -31,10 +31,8 @@ async function verificarAgendamentos(telUsuario) {
         agendamentosDiv.innerHTML = ''; // Limpar resultados anteriores
 
         if (!querySnapshot.empty) {
-            console.log("O usuário tem os seguintes agendamentos:");
             querySnapshot.forEach((doc) => {
                 const agendamento = doc.data();
-                console.log(agendamento);
                 // Criar card com as informações do agendamento
                 const card = document.createElement('div');
                 card.className = 'card';
@@ -49,13 +47,34 @@ async function verificarAgendamentos(telUsuario) {
                 agendamentosDiv.appendChild(card);
             });
 
-            // Adiciona event listener a todos os botões de cancelar agendamento
             document.querySelectorAll('.btnCancelaAgendamento').forEach(button => {
                 button.addEventListener('click', async function() {
                     const agendamentoId = this.getAttribute('data-id');
                     await cancelarAgendamento(agendamentoId);
                 });
+            })
+
+            const btnAnterior = document.querySelector('.btnAnterior');
+            const btnProximo = document.querySelector('.btnProximo');
+            
+            btnAnterior.style.display = 'block';
+            btnProximo.style.display = 'block';
+
+            // Listener para mover para o próximo card
+            btnProximo.addEventListener('click', function() { 
+                agendamentosDiv.scrollBy({ left: agendamentosDiv.clientWidth, behavior: 'smooth' });
             });
+
+            // Listener para mover para o card anterior
+            btnAnterior.addEventListener('click', function() {
+                agendamentosDiv.scrollBy({ left: -agendamentosDiv.clientWidth, behavior: 'smooth' });
+            });
+
+            // Opcional: Esconder os botões se houver apenas um card
+            if (querySnapshot.size <= 1) {
+                btnAnterior.style.display = 'none';
+                btnProximo.style.display = 'none';
+            }
 
             return true;
         } else {
@@ -112,3 +131,4 @@ btnVoltar.addEventListener("click", function() {
     window.location.href = '../index.html';
     console.log("fui clicado")
 });
+
