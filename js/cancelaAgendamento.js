@@ -54,11 +54,21 @@ async function verificarAgendamentos(telUsuario) {
                 });
             })
 
-            const btnAnterior = document.querySelector('.btnAnterior');
-            const btnProximo = document.querySelector('.btnProximo');
+            if (window.innerWidth <= 480) { // Ajuste o valor conforme necessário
+                // Se a largura da tela for menor ou igual a 480px, esconda os botões
+                const btnAnterior = document.querySelector('.btnAnterior');
+                const btnProximo = document.querySelector('.btnProximo');
             
-            btnAnterior.style.display = 'block';
-            btnProximo.style.display = 'block';
+                btnAnterior.style.display = 'none';
+                btnProximo.style.display = 'none';
+            } else {
+                const btnAnterior = document.querySelector('.btnAnterior');
+                const btnProximo = document.querySelector('.btnProximo');
+            
+                btnAnterior.style.display = 'block';
+                btnProximo.style.display = 'block';
+            }
+            
 
             // Listener para mover para o próximo card
             btnProximo.addEventListener('click', function() { 
@@ -101,7 +111,7 @@ async function cancelarAgendamento(agendamentoId) {
     } catch (error) {
         console.error("Erro ao cancelar agendamento:", error);
     }
-    
+
 }
 
 // Event listener para o botão de consulta de agendamento
