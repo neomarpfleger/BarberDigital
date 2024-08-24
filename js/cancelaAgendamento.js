@@ -101,6 +101,7 @@ async function cancelarAgendamento(agendamentoId) {
     } catch (error) {
         console.error("Erro ao cancelar agendamento:", error);
     }
+    
 }
 
 // Event listener para o botão de consulta de agendamento

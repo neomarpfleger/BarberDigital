@@ -183,6 +183,7 @@ hr {
 }
 .card p {
     margin: 4px 0;
+
 }
 
 .btnCancelaAgendamento {
@@ -226,6 +227,10 @@ hr {
         min-width: 70%;
         scroll-snap-align: center;
         transition: transform 0.9s ease-in-out;
+    }
+
+    .btnMovimentoAgendamentos {
+        display: none;
     }
 
 }
