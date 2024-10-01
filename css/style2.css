@@ -6,13 +6,18 @@ header {
     display: flex;
     width: 100%;
     height: auto;
-    justify-content: center;
+    justify-content:space-between;
+}
+
+#logo {
+    width: 8rem;
+    margin: 0.5rem 0.5rem;
 }
 
 #btnMeuAcesso {
-    width: 10rem;
-    margin-top: 1rem;
-    margin-left: 85%;
+    width: auto;
+    margin: 1rem 0.5rem;
+    padding: 0 0.5rem;
     font-size: 0.7rem;
     color: var(--primary-color);
     height: 1.2rem;

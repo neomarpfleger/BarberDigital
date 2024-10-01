@@ -103,7 +103,7 @@ body {
     display: flex;
 }
 
-#btnMeuAgendamento, #btnMeuAcesso {
+#btnMeuAgendamento {
     font-size: 0.7rem;
     color: var(--primary-color);
     width: 100%;
