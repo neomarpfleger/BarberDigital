@@ -12,7 +12,6 @@ body {
 #agendamento {
     width: 100%;
     height: 100svh;
-
     background-image: url('../imagens/PlanoDeFundo.avif');
     background-size: cover;
     background-position: center;
@@ -46,7 +45,7 @@ body {
     background-color: transparent;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border: 0.1px solid var(--secondary-color);
+    border: none;
 }
 
 #cadastro div {
@@ -87,7 +86,7 @@ body {
     height: 2.5rem;
     margin-top: 1rem;
     background-color: var(--secondary-color);
-    border: 1px solid transparent;
+    border: 1px solid var(--primary-color);
     border-radius: 25px;
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 600;
@@ -110,7 +109,7 @@ body {
     height: 1.2rem;
     backdrop-filter: blur;
     background-color: var(--secondary-color);
-    border: 1px solid transparent;
+    border: 1px solid var(--primary-color);
     border-radius: 25px;
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 900;
@@ -134,5 +133,11 @@ hr {
 
 @media only screen and (max-width: 480px) {
 
+    #agendamento {
+        background-image: url('../imagens/White\ and\ Green\ Modern\ Bold\ We\'re\ Open\ Store\ Mobile\ Video\ .gif');
+    }
 
+    #btnMeuAgendamento {
+        height: 1.5rem;
+    }
 }

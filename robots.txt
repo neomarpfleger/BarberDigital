@@ -1,1 +1,0 @@
-Sitemap: https://barber-digital.vercel.app/sitemap.xml
