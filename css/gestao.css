@@ -26,6 +26,14 @@
     position: relative;
 }
 
+.divInputPassword {
+    width: 100%;
+    height: calc(100vh - 6rem);
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
 #InputPassword {
     position: relative;
     z-index: 2;
@@ -35,7 +43,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 1rem;
+    margin: auto;
     padding: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.521);
     backdrop-filter: blur(20px);
