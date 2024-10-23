@@ -4,6 +4,7 @@ import { getFirestore, collection, query, where, getDocs } from "https://www.gst
 let nomeUsuarioLogado; // Variável global para armazenar o nome do usuário logado
 
 async function verificarLogin(usuario, password) {
+    
     const firebaseConfig = {
         apiKey: import.meta.env.VITE_API_KEY,
         authDomain: import.meta.env.VITE_AUTH_DOMAIN,
