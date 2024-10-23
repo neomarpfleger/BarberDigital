@@ -133,6 +133,10 @@ hr {
 
 @media only screen and (max-width: 480px) {
 
+    #agendamento {
+        background-image: url('../imagens/gif.gif');
+    }
+
     #btnMeuAgendamento {
         height: 1.5rem;
     }

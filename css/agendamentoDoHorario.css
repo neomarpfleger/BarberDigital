@@ -80,5 +80,6 @@ body {
 }
 
 .horario:hover {
+    scale: 1.1;
     box-shadow: 0 0 10px var(--primary-color);
 }
