@@ -198,3 +198,18 @@ hr {
 
 
 }
+
+#agendamentosAtivos {
+    display: flex;
+    overflow-x: scroll; /* Permite o scroll horizontal */
+    scroll-snap-type: x mandatory; /* Configura o snapping ao deslizar */
+    -webkit-overflow-scrolling: touch; /* Suaviza o scroll no mobile */
+}
+
+.card {
+    flex: 0 0 100%; /* Faz cada card ocupar 100% da largura do contêiner Carmen, Nikki Anderson*/
+    scroll-snap-align: start; /* Faz o card alinhar ao início quando deslizado */
+    box-sizing: border-box;
+    margin: 0 5%; /* Pequena margem entre os cards */
+}
+
