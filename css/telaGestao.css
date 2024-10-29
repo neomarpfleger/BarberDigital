@@ -10,12 +10,12 @@
     --primary-color: #F4EEE0;
     --secondary-color: #6D5D6E;
     --terceary-color: #4F4557;
-    --font-titulo: "Rampart One", sans-serif;  
+    --font-titulo: "Lexend Giga", sans-serif;  
 }
 
 #cabecalho {
     display: flex;
-    align-items: center;
+    text-align: center;
     justify-content: center;
     flex-direction: column;
     width: 100%;
@@ -48,9 +48,9 @@
 
 #tituloMes {
     display: flex;
-    align-items: center;
+    text-align: center;
     justify-content: center;
-    width: 90%;  
+    width: 100%;  
 }
 
 #btnVoltar {
@@ -283,13 +283,8 @@
         width: 350px;
     }
 
-    #navegacaoCards {
-        display: flex;
-    }
-
     .navegacaoBtn {
         margin: 2rem 1.5rem 1rem;
-        display: none;
     }
 
 }

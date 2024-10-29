@@ -3,20 +3,20 @@ import { getFirestore, collection, query, where, getDocs, updateDoc, doc } from 
 
 // Configuração do Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyCjikfZGyH08hxyNq9lFbeW_nnZKToMDfs",
-    authDomain: "barbearia-632bf.firebaseapp.com",
-    projectId: "barbearia-632bf",
-    storageBucket: "barbearia-632bf.appspot.com",
-    messagingSenderId: "900539097858",
-    appId: "1:900539097858:web:2b92d32cdb3c209fa5581b",
-    measurementId: "G-GK6S7FYXYS"
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID,
+    measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
 
 // Inicializar Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig); 
 const db = getFirestore(app);
 
-// Função para verificar e imprimir agendamentos
+// Função para verificar e imprimir agendamentos (modificada)
 async function verificarAgendamentos(telUsuario) {
     const agendamentosRef = collection(db, "agendamentos");
     const q = query(
@@ -31,10 +31,8 @@ async function verificarAgendamentos(telUsuario) {
         agendamentosDiv.innerHTML = ''; // Limpar resultados anteriores
 
         if (!querySnapshot.empty) {
-            console.log("O usuário tem os seguintes agendamentos:");
             querySnapshot.forEach((doc) => {
                 const agendamento = doc.data();
-                console.log(agendamento);
                 // Criar card com as informações do agendamento
                 const card = document.createElement('div');
                 card.className = 'card';
@@ -49,13 +47,44 @@ async function verificarAgendamentos(telUsuario) {
                 agendamentosDiv.appendChild(card);
             });
 
-            // Adiciona event listener a todos os botões de cancelar agendamento
             document.querySelectorAll('.btnCancelaAgendamento').forEach(button => {
                 button.addEventListener('click', async function() {
                     const agendamentoId = this.getAttribute('data-id');
                     await cancelarAgendamento(agendamentoId);
                 });
+            })
+
+            if (window.innerWidth <= 480) { // Ajuste o valor conforme necessário
+                // Se a largura da tela for menor ou igual a 480px, esconda os botões
+                const btnAnterior = document.querySelector('.btnAnterior');
+                const btnProximo = document.querySelector('.btnProximo');
+            
+                btnAnterior.style.display = 'none';
+                btnProximo.style.display = 'none';
+            } else {
+                const btnAnterior = document.querySelector('.btnAnterior');
+                const btnProximo = document.querySelector('.btnProximo');
+            
+                btnAnterior.style.display = 'block';
+                btnProximo.style.display = 'block';
+            }
+            
+
+            // Listener para mover para o próximo card
+            btnProximo.addEventListener('click', function() { 
+                agendamentosDiv.scrollBy({ left: agendamentosDiv.clientWidth, behavior: 'smooth' });
             });
+
+            // Listener para mover para o card anterior
+            btnAnterior.addEventListener('click', function() {
+                agendamentosDiv.scrollBy({ left: -agendamentosDiv.clientWidth, behavior: 'smooth' });
+            });
+
+            // Opcional: Esconder os botões se houver apenas um card
+            if (querySnapshot.size <= 1) {
+                btnAnterior.style.display = 'none';
+                btnProximo.style.display = 'none';
+            }
 
             return true;
         } else {
@@ -82,6 +111,7 @@ async function cancelarAgendamento(agendamentoId) {
     } catch (error) {
         console.error("Erro ao cancelar agendamento:", error);
     }
+
 }
 
 // Event listener para o botão de consulta de agendamento

@@ -3,13 +3,13 @@ import { getFirestore, collection, query, where, getDocs, doc, updateDoc  } from
 
 // Configuração do Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyCjikfZGyH08hxyNq9lFbeW_nnZKToMDfs",
-    authDomain: "barbearia-632bf.firebaseapp.com",
-    projectId: "barbearia-632bf",
-    storageBucket: "barbearia-632bf",
-    messagingSenderId: "900539097858",
-    appId: "1:900539097858:web:2b92d32cdb3c209fa5581b",
-    measurementId: "G-GK6S7FYXYS"
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID,
+    measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
 
 // Inicialização do Firebase
@@ -286,14 +286,17 @@ function toggleVisibility(showCalendario) {
     const calendario = document.getElementById('calendario');
     const agendamentoMes = document.getElementById('agendamentoMes');
     const btnVoltar = document.getElementById('btnVoltar');
+    const navegacaoBtn =document.querySelector(".navegacaoBtn");
 
     if (showCalendario) {
         calendario.style.display = 'block';
         agendamentoMes.style.display = 'none';
         btnVoltar.style.display = 'none';
+        navegacaoBtn.style.display = 'none';
     } else {
         calendario.style.display = 'none';
         agendamentoMes.style.display = 'block';
         btnVoltar.style.display = 'flex';
+        navegacaoBtn.style.display = 'flex';
     }
 }

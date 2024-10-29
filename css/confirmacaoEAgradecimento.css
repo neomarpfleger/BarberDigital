@@ -14,7 +14,7 @@ body {
     font-family: "Alegreya Sans", sans-serif;
     font-weight: 400;
     font-style: normal;
-    height: 100vh;
+    height: 100svh;
     background-color: var(--primary-color);
     margin: 0;
     padding: 0;
